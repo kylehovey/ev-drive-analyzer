@@ -9,19 +9,19 @@
   <body>
     <div id="message">
       <h1>Analyze driving statistics</h1>
-      <p>First, download from <a href="https://takeout.google.com/settings/takeout">Google Takeout</a></p>
-      <p>Then run the python script <a href="https://gist.github.com/bradsrichardson/11682ece1adac9e3d3f440ef66c19885">here</a> to create a trips JSON.</p>
-      <p>Then upload your new trip history JSON here:</p>
-
+      <p>First, download your location history JSON from <a href="https://takeout.google.com/settings/takeout">Google Takeout</a></p>
+      <p>Then upload your new location history here</p>
+      <br />
+      <input type="file" id="selectFiles" value="Import" />
+      <br />
+      <p>Next, select which cars range you would like to use as a comparison:</p>
       <select id="select-car">
         <option value="240">Tesla Model S</option>
         <option value="200">Tesla Model 3</option>
         <option value="107">Nissan Leaf</option>
       </select>
       <br />
-      <input type="file" id="selectFiles" value="Import" />
-      <br />
-      <button id="import">Import</button>
+      <button id="import">Analyze!</button>
       </br>
       <div id="output"></div>
       <div id="chart_trips_div"></div>
