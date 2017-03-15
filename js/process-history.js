@@ -1,27 +1,34 @@
+// Takes Google Location History JSON as input and produced a summarized output with trips and days
+// JSON from processLocationHistory() looks like:
+// {
+//     "trips": [{"distance": 1000, "avgMph": 30, "totalTime": 1000, "startTime": "2017-03-14"}],
+//     "days": [{"date": "2017-03-14", "distance": 1000}],
+//     "summary": ["totalDistance": 1000000, "avgDistancePerDay": 100, "totalDays": 100, "totalTrips": 100]
+// }
 // Inspired by https://github.com/Scarygami/location-history-json-converter
 //   and https://github.com/kyleai/Google-Location-History-Total-Distance-Travelled
 
 function processLocationHistory(locationJSON) {
     var locations = locationJSON.locations;
-
     locations.sort(function(a,b) {
         return a.timestampMs - b.timestampMs;
     });
 
     var trips = [], days = [], summary = {totalDistance: 0};
-    var prevTs = 0, prevLat = 0, prevLong = 0;
+    var prevTs = 0, prevLat = 0, prevLong = 0; // previous location's values
+    var currTrip = createTripObject();
     var currDate = "";
     var currDayDistance = 0;
-    var currTrip = createTripObject();
     for (var i = 0; i < locations.length; i++) {
         var loc = locations[i];
         var ts = parseInt(loc.timestampMs);
         var lat = loc.latitudeE7 * Math.pow(10, -7);
         var long = loc.longitudeE7 * Math.pow(10, -7);
         var newDate = timestampToDate(loc.timestampMs);
-        if (prevLat != 0) {
-            timeDelta = Math.abs((ts - prevTs) / 1000.0 / 60.0);
-            distanceDelta = Math.abs(distance(lat, long, prevLat, prevLong));
+        if (prevTs != 0) {
+            var timeDelta = Math.abs((ts - prevTs) / 1000.0 / 60.0);
+            var distanceDelta = Math.abs(distance(lat, long, prevLat, prevLong));
+            summary.totalDistance += distanceDelta;
             
             // Process trips, create new one if large gap in time or distance
             if (timeDelta > 10 || distanceDelta > 40) {
@@ -42,8 +49,6 @@ function processLocationHistory(locationJSON) {
             } else if (distanceDelta < 200) {
                 currDayDistance += distanceDelta;
             }
-
-            summary.totalDistance += distanceDelta;
         }
         prevTs = ts;
         prevLat = lat;
@@ -60,7 +65,6 @@ function processLocationHistory(locationJSON) {
     summary.totalDays = days.length;
     summary.avgDistancePerDay = summary.totalDistance / summary.totalDays;
     var results = {trips: trips, days: days, summary: summary};
-    console.log(results);
     return results;
 }
 
@@ -76,12 +80,11 @@ function addLocationToTrip(loc, distanceDelta, trip) {
         trip.distance += distanceDelta
         trip.totalTime = parseInt(loc.timestampMs) * Math.pow(10, -4) - trip.startTime;
     }
-
     return trip;
 }
 
 function isValidTrip(trip) {
-    return trip.distance > 5;
+    return trip.distance > 2;
 }
 
 // Only add day if distance isn't greater than 500 (probably flew in a plane)
@@ -89,18 +92,18 @@ function isValidDay(currDate, currDayDistance) {
     return currDate.length > 0 && currDayDistance < 500;
 }
 
-// "Fri, 10 Mar 2017 00:21:32 GMT"
+// 2017-03-14 10:30 
 function timestampToDatetime(timestamp) {
-    return (new Date(parseInt(timestamp))).toUTCString();
+    return new Date(parseInt(timestamp)).toISOString().substr(0, 19).replace('T', ' ');
 }
 
-// "Tue Mar 14 2017"
+// 2017-03-14
 function timestampToDate(timestamp) {
-    return (new Date(parseInt(timestamp))).toDateString();
+    return new Date(parseInt(timestamp)).toISOString().substr(0, 10);
 }
 
 // http://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
-// In miles
+// Returns distance in miles
 function distance(lat1, lon1, lat2, lon2) {
   var p = 0.017453292519943295;    // Math.PI / 180
   var c = Math.cos;
@@ -109,5 +112,5 @@ function distance(lat1, lon1, lat2, lon2) {
           (1 - c((lon2 - lon1) * p))/2;
 
   var km = 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
-  return km * 0.621371;
+  return km * 0.621371; // convert to miles
 }

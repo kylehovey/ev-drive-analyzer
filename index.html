@@ -2,18 +2,17 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Drive History</title>
+    <title>Travel Analyzer</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet" ></style>
   </head>
   <body>
     <div id="message">
       <h1>Analyze driving statistics</h1>
-      <p>First, download your location history JSON from <a href="https://takeout.google.com/settings/takeout">Google Takeout</a></p>
-      <p>Then upload your new location history here:</p>
+      <p>First, download your location history JSON from <a href="https://takeout.google.com/settings/takeout">Google Takeout</a> (click link, click "Select none", then turn "Location History" on using JSON format)</p>
+      <p>Then, upload your new location history here:</p>
       <input type="file" id="selectFiles" value="Import" />
-      <br />
-      <p>Next, select which car's range you would like to use as a comparison:</p>
+      <p>Next, select which car's range you would like to use as a guide:</p>
       <select id="select-car">
         <option value="294">Tesla Model S (294 miles)</option>
         <option value="257">Tesla Model X (257 miles)</option>
@@ -22,16 +21,17 @@
         <option value="107">Nissan Leaf (107 miles)</option>
         <option value="84">Fiat 500e (84 miles)</option>
       </select>
-      <br />
+      <p>Finally, click Analyze!</p>
       <button id="import">Analyze!</button>
-      </br>
+      <br /><br />
+      <div id="spinner"></div>
       <div id="output"></div>
       <div id="chart_trips_div"></div>
       <div id="chart_days_div"></div>
-
     </div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="js/index.js"></script>
     <script src="js/process-history.js"></script>
+    <script src="js/spin.min.js"></script>
   </body>
 </html>

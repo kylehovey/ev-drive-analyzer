@@ -15,7 +15,6 @@ function prepDataForGoogleChart(input, bucketWidth) {
     var bucket = new Map();
     input.forEach(function(trip) {
         var key = Math.floor(trip['distance'] / bucketWidth);
-        // console.log(key);
         if (typeof(bucket.get(key)) == 'undefined') {
             bucket.set(key, 0);
         }
@@ -26,8 +25,6 @@ function prepDataForGoogleChart(input, bucketWidth) {
         var miles = key*bucketWidth;
         data.push([miles, value, getColorForValue(miles, carRange)]);
     });
-    // console.log(bucket);
-    console.log(data);
 
     return data;
 }
@@ -94,24 +91,28 @@ function createChartByDay(result) {
 
 document.getElementById('import').onclick = function() {
     var files = document.getElementById('selectFiles').files;
-    // console.log(files);
     if (files.length <= 0) {
         return false;
     }
 
-    var fr = new FileReader();
+    var target = document.getElementById("spinner");
+    var spinner = new Spinner({}).spin(target);
 
+    var fr = new FileReader();
     fr.onload = function(e) { 
         try {
             // Strip whitespace
             var contents = e.target.result.replace(/\s+/g,"").replace(/(\r\n|\n|\r)/gm,"");
             var parsedContents = JSON.parse(contents);
         } catch (SyntaxError) {
-            alert("Error reading JSON. File either exceeds 256 MB or is not JSON. Try reading in Safari or Edge.")
+            alert("Error: File is either >256MB or not valid. If the file is >256MB, try using Safari or Edge instead.")
         }
+
         var results = processLocationHistory(parsedContents);
+        console.log(results);
         createChartByTrip(results['trips']);
         createChartByDay(results['days']);
+        spinner.stop();
     }
     fr.readAsText(files.item(0));
 };
