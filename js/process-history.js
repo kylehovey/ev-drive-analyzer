@@ -92,7 +92,7 @@ function isValidDay(currDate, currDayDistance) {
     return currDate.length > 0 && currDayDistance < 500;
 }
 
-// 2017-03-14 10:30 
+// 2017-03-14 10:30
 function timestampToDatetime(timestamp) {
     return new Date(parseInt(timestamp)).toISOString().substr(0, 19).replace('T', ' ');
 }
