@@ -10,15 +10,17 @@
     <div id="message">
       <h1>Analyze driving statistics</h1>
       <p>First, download your location history JSON from <a href="https://takeout.google.com/settings/takeout">Google Takeout</a></p>
-      <p>Then upload your new location history here</p>
-      <br />
+      <p>Then upload your new location history here:</p>
       <input type="file" id="selectFiles" value="Import" />
       <br />
-      <p>Next, select which cars range you would like to use as a comparison:</p>
+      <p>Next, select which car's range you would like to use as a comparison:</p>
       <select id="select-car">
-        <option value="240">Tesla Model S</option>
-        <option value="200">Tesla Model 3</option>
-        <option value="107">Nissan Leaf</option>
+        <option value="294">Tesla Model S (294 miles)</option>
+        <option value="257">Tesla Model X (257 miles)</option>
+        <option value="215">Tesla Model 3 (215 miles)</option>
+        <option value="114">BMW i3 (114 miles)</option>
+        <option value="107">Nissan Leaf (107 miles)</option>
+        <option value="84">Fiat 500e (84 miles)</option>
       </select>
       <br />
       <button id="import">Analyze!</button>
