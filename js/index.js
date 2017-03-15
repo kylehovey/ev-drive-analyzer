@@ -54,7 +54,8 @@ function createChartByTrip(result) {
         vAxis: {
             title: 'Number of trips',
             scaleType: 'log'
-        }
+        },
+        legend: {position: 'none'}
     };
 
     var chart = new google.visualization.ColumnChart(document.getElementById('chart_trips_div'));
@@ -83,7 +84,8 @@ function createChartByDay(result) {
         vAxis: {
             title: 'Number of days',
             scaleType: 'log'
-        }
+        },
+        legend: {position: 'none'}
     };
 
     var chart = new google.visualization.ColumnChart(document.getElementById('chart_days_div'));
