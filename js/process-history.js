@@ -10,9 +10,6 @@
 
 function processLocationHistory(locationJSON) {
     var locations = locationJSON.locations;
-    locations.sort(function(a,b) {
-        return a.timestampMs - b.timestampMs;
-    });
 
     var trips = [], days = [], summary = {totalDistance: 0};
     var prevTs = 0, prevLat = 0, prevLong = 0; // previous location's values

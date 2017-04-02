@@ -2,39 +2,49 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Travel Analyzer</title>
+
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet" ></style>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
   </head>
   <body>
-    <div id="message">
+    <div class="container">
       <h1>Analyze travel history</h1>
       <p>Use this to see if owning an electric car would be feasible based on your travel patterns</p>
       <p>First, download your location history from <a href="https://takeout.google.com/settings/takeout">Google Takeout</a> (click link, click "Select none", then turn on "Location History" and select JSON format)</p>
-      <p>Then, upload your new location history here:</p>
+      <p>Then, upload your location history here:</p>
       <input type="file" id="selectFiles" value="Import" />
       <p>Next, select which car's range you would like to use as a guide:</p>
       <select id="select-car">
-        <option value="294">Tesla Model S (294 miles)</option>
-        <option value="257">Tesla Model X (257 miles)</option>
-        <option value="215">Tesla Model 3 (215 miles)</option>
-        <option value="114">BMW i3 (114 miles)</option>
-        <option value="107">Nissan Leaf (107 miles)</option>
-        <option value="84">Fiat 500e (84 miles)</option>
+        <option value="none">Pick a car</option>
+        <option value="model-s">Tesla Model S (294 miles)</option>
+        <option value="model-x">Tesla Model X (257 miles)</option>
+        <option value="model-3">Tesla Model 3 (215 miles)</option>
+        <option value="i3">BMW i3 (114 miles)</option>
+        <option value="leaf">Nissan Leaf (107 miles)</option>
+        <option value="500e">Fiat 500e (84 miles)</option>
       </select>
-      <p>Finally, click Analyze!</p>
-      <button id="import">Analyze!</button>
-      <br /><br />
+      <br />
       <div id="spinner"></div>
       <div id="output"></div>
       <div id="chart_trips_div"></div>
       <div id="chart_days_div"></div>
+
+      <h2 id="prev_days_header" style="visibility: hidden;">Last <span id="prev_days_span"></span> days summary:</h2>
       <div id="latest_days_div"></div>
     </div>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="js/index.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/process-history.js"></script>
     <script src="js/spin.min.js"></script>
     <script src="js/moment.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/graphs.js"></script>
+    <script src="js/latest-days.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>
