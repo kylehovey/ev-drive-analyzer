@@ -13,9 +13,8 @@ function updateUI() {
     createChartByDay(results['days']);
     outputLatestDaysTrips(latestDaysTrips);
 
-    spinner.stop();
-
     document.getElementById("prev_days_header").style.visibility = "visible";
+    spinner.stop();
 }
 
 document.getElementById('selectFiles').onchange = function() {
@@ -50,4 +49,19 @@ document.getElementById('selectFiles').onchange = function() {
 
 document.getElementById('select-car').onchange = function() {
     updateUI();
+}
+
+document.getElementById('previous-days').oninput = function(event) {
+    var prevDaysString = event.target.value;
+    var prevDays = parseInt(prevDaysString);
+    if (Number.isInteger(prevDays)) {
+        var spinner = getSpinner();
+
+        setPreviousDays(parseInt(prevDaysString))
+        latestDaysTrips = getLatestDaysTripsFromResults(results, PREVIOUS_DAYS);
+        console.log(latestDaysTrips);
+        updateUI();
+        
+        spinner.stop();
+    }
 }

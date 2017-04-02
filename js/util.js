@@ -1,5 +1,4 @@
 var PREVIOUS_DAYS = 30;
-document.getElementById('prev_days_span').innerHTML = PREVIOUS_DAYS;
 
 var cars = {
     "none": {
@@ -41,11 +40,21 @@ function textNode(elem, string) {
 
 function getColorForValue(value, carRange) {
     if (value < carRange * .75) {
-        return 'green'
+        return 'green';
     } else if (value < carRange) {
-        return 'yellow'
+        return 'yellow';
     } else {
-        return 'red'
+        return 'red';
+    }
+}
+
+function getClassForValue(value, carRange) {
+    if (value < carRange * .75) {
+        return '';
+    } else if (value < carRange) {
+        return 'warning';
+    } else {
+        return 'danger';
     }
 }
 
@@ -64,3 +73,9 @@ function getSpinner() {
     var spinner = new Spinner({}).spin(target);
     return spinner;
 }
+
+function setPreviousDays(prevDays) {
+    PREVIOUS_DAYS = prevDays;
+    document.getElementById('prev_days_span').innerHTML = PREVIOUS_DAYS;
+}
+setPreviousDays(PREVIOUS_DAYS);

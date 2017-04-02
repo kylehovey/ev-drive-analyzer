@@ -82,7 +82,7 @@ function addLocationToTrip(loc, distanceDelta, trip) {
         trip.startDatetime = timestampToDatetime(loc.timestampMs);
     } else {
         trip.distance += distanceDelta
-        trip.totalTime = parseInt(loc.timestampMs) * Math.pow(10, -3) - trip.startTime;
+        trip.totalTime = Math.abs(parseInt(loc.timestampMs) * Math.pow(10, -3) - trip.startTime);
     }
     return trip;
 }

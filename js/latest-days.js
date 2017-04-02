@@ -19,6 +19,7 @@ function getLatestTripsFromResults(results, numberOfDays) {
             break;
         }
     }
+    lastTrips.reverse();
     return lastTrips;
 }
 
@@ -87,6 +88,7 @@ function tableForTrips(trips) {
 
         var td1 = textNode(elem('td'), date.format("LT"));
         var td2 = textNode(elem('td'), currTrip.distance);
+        td2.className = getClassForValue(currTrip.distance, getCarRange());
         var td3 = textNode(elem('td'), formatDuration(duration));
 
         tr.appendChild(td1);
@@ -103,7 +105,7 @@ function outputLatestDaysTrips(latestDays) {
     var latestDaysDiv = document.getElementById('latest_days_div');
 
     var table = elem('table');
-    table.className = "table";
+    table.className = "table table-striped table-bordered";
 
     // Table Header
     var tHead = elem('thead');
@@ -133,6 +135,7 @@ function outputLatestDaysTrips(latestDays) {
             textNode(td3, "No trips");
         } else {
             textNode(td2, currDay.distance);
+            td2.className = getClassForValue(currDay.distance, getCarRange());
             td3.appendChild(tableForTrips(currTrips));
         }
 
