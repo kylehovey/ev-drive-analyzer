@@ -19,24 +19,27 @@
       <input type="file" id="selectFiles" value="Import" />
       <p>Next, select which car's range you would like to use as a guide:</p>
       <select id="select-car">
-        <option value="none">Pick a car</option>
-        <option value="model-s">Tesla Model S (294 miles)</option>
-        <option value="model-x">Tesla Model X (257 miles)</option>
-        <option value="model-3">Tesla Model 3 (215 miles)</option>
-        <option value="i3">BMW i3 (114 miles)</option>
-        <option value="leaf">Nissan Leaf (107 miles)</option>
         <option value="500e">Fiat 500e (84 miles)</option>
+        <option value="leaf">Nissan Leaf (107 miles)</option>
+        <option value="i3">BMW i3 (114 miles)</option>
+        <option value="model-3">Tesla Model 3 (215 miles)</option>
+        <option value="model-x">Tesla Model X (257 miles)</option>
+        <option value="model-s">Tesla Model S (294 miles)</option>
       </select>
-      <br /><br />
+      <p>Optionally, change the number of previous days to summarize:</p>
       <input id="previous-days" type="number" value="30">
       <br />
-      <div id="spinner"></div>
+
       <div id="output"></div>
       <div id="chart_trips_div"></div>
       <div id="chart_days_div"></div>
 
-      <h2 id="prev_days_header" style="visibility: hidden;">Last <span id="prev_days_span"></span> days summary:</h2>
+      <h3 id="cost_header">Cost summary:</h3>
+      <div id="cost_div"></div>
+
+      <h3 id="prev_days_header" style="visibility: hidden;">Last <span id="prev_days_span"></span> days summary:</h3>
       <div id="latest_days_div"></div>
+      <div id="spinner"></div>
     </div>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
