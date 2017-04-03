@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Travel Analyzer</title>
+    <title>Electric Vehicle Recommender</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -12,7 +12,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>Analyze travel history</h1>
+      <h1>Electric Vehicle Recommender</h1>
       <p>Use this to see if owning an electric car would be feasible based on your travel patterns</p>
       <p>First, download your location history from <a href="https://takeout.google.com/settings/takeout">Google Takeout</a> (click link, click "Select none", then turn on "Location History" and select JSON format)</p>
       <p>Then, upload your location history here:</p>
@@ -30,26 +30,29 @@
       <input id="previous-days" type="number" value="30">
       <br />
 
-      <div id="output"></div>
-      <div id="chart_trips_div"></div>
-      <div id="chart_days_div"></div>
+      <div id="all_output" style="visibility: visible;">
+        <div id="output"></div>
+        <div id="chart_trips_div"></div>
+        <div id="chart_days_div"></div>
 
-      <h3 id="cost_header">Cost summary:</h3>
-      <div id="cost_div"></div>
-
-      <h3 id="prev_days_header" style="visibility: hidden;">Last <span id="prev_days_span"></span> days summary:</h3>
-      <div id="latest_days_div"></div>
+        <h3 id="prev_days_header" style="visibility: hidden;">Last <span id="prev_days_span"></span> days summary:</h3>
+        <div id="latest_days_div"></div>
+      </div>
       <div id="spinner"></div>
     </div>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/process-history.js"></script>
     <script src="js/spin.min.js"></script>
     <script src="js/moment.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
     <script src="js/util.js"></script>
+    <script src="js/process-history.js"></script>
     <script src="js/graphs.js"></script>
     <script src="js/latest-days.js"></script>
     <script src="js/index.js"></script>
+
+
+    <script src="js/charging-stations.js" async></script>
   </body>
 </html>

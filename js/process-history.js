@@ -73,10 +73,13 @@ function addTrip(trip, trips) {
 }
 
 function createTripObject() {
-    return {distance: 0, totalTime: 0, startTime: 0, startDatetime: ""};
+    return {distance: 0, totalTime: 0, startTime: 0, startDatetime: "", locations: []};
 }
 
 function addLocationToTrip(loc, distanceDelta, trip) {
+    var lat = loc.latitudeE7 * Math.pow(10, -7);
+    var long = loc.longitudeE7 * Math.pow(10, -7);
+    trip.locations.push({"lat": lat, "long": long});
     if (trip.startDatetime.length == 0) {
         trip.startTime = parseInt(loc.timestampMs) * Math.pow(10, -3);
         trip.startDatetime = timestampToDatetime(loc.timestampMs);

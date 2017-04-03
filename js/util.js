@@ -8,7 +8,7 @@ var cars = {
         "range": 294
     },
     "model-x": {
-        "range": 157
+        "range": 257
     },
     "model-3": {
         "range": 215
@@ -48,6 +48,10 @@ function getColorForValue(value, carRange) {
     }
 }
 
+function needsCharge(distance, carRange) {
+    return distance > carRange * .75;
+}
+
 function getClassForValue(value, carRange) {
     if (value < carRange * .75) {
         return '';
@@ -79,3 +83,42 @@ function setPreviousDays(prevDays) {
     document.getElementById('prev_days_span').innerHTML = PREVIOUS_DAYS;
 }
 setPreviousDays(PREVIOUS_DAYS);
+
+function shouldShowDay(day) {
+    return needsCharge(day.distance, getCarRange());
+}
+
+// TODO - have a dropdown menu to choose between all and open
+function getStations() {
+    return getAllStations();
+}
+
+function getOpenStations() {
+    return charging_stations.open;
+}
+
+function getAllStations() {
+    return charging_stations.open.concat(charging_stations.other);
+}
+
+// TODO - need to store trip locations along the way
+function nearestChargingStation(location, stations) {
+    var lat1 = location.lat;
+    var long1 = location.long;
+    
+    var closestDist = 9999999;
+    var closest = {};
+    for (var i = 0; i < stations.length; i++) {
+        var currStation = stations[i];
+        var lat2 = currStation.lat;
+        var long2 = currStation.long;
+
+        var dist = distance(lat1, long1, lat2, long2);
+        if (dist < closestDist) {
+            closestDist = dist;
+            closest = currStation;
+        }
+    }
+    closest.distance = round(closestDist, 1);
+    return closest;
+}
