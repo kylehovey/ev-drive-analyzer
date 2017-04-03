@@ -13,7 +13,7 @@ function updateUI() {
     createChartByDay(results['days']);
     outputLatestDaysTrips(latestDaysTrips);
 
-    document.getElementById("prev_days_header").style.visibility = "visible";
+    document.getElementById("all_output").style.visibility = "visible";
     spinner.stop();
 }
 
@@ -64,4 +64,12 @@ document.getElementById('previous-days').oninput = function(event) {
         
         spinner.stop();
     }
+}
+
+document.getElementById('only-problem-days').onchange = function() {
+    updateUI();
+}
+
+document.getElementById('stations-to-use').onchange = function() {
+    updateUI();
 }

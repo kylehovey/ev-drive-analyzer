@@ -25,7 +25,11 @@ function processLocationHistory(locationJSON) {
         if (prevTs != 0) {
             var timeDelta = Math.abs((ts - prevTs) / 1000.0 / 60.0);
             var distanceDelta = Math.abs(distance(lat, long, prevLat, prevLong));
-            summary.totalDistance += distanceDelta;
+
+            // Ignore point if it is very close (.01 miles is about 1 block)
+            if (distanceDelta < 0.05) {
+                continue;
+            }
             
             // Process trips, create new one if large gap in time or distance
             if (timeDelta > 10 || distanceDelta > 40) {
@@ -46,6 +50,7 @@ function processLocationHistory(locationJSON) {
             } else if (distanceDelta < 200) {
                 currDayDistance += distanceDelta;
             }
+            summary.totalDistance += distanceDelta;
         }
         prevTs = ts;
         prevLat = lat;
@@ -79,7 +84,7 @@ function createTripObject() {
 function addLocationToTrip(loc, distanceDelta, trip) {
     var lat = loc.latitudeE7 * Math.pow(10, -7);
     var long = loc.longitudeE7 * Math.pow(10, -7);
-    trip.locations.push({"lat": lat, "long": long});
+    trip.locations.push({"lat": round(lat, 7), "long": round(long, 7)});
     if (trip.startDatetime.length == 0) {
         trip.startTime = parseInt(loc.timestampMs) * Math.pow(10, -3);
         trip.startDatetime = timestampToDatetime(loc.timestampMs);

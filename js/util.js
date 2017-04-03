@@ -85,12 +85,13 @@ function setPreviousDays(prevDays) {
 setPreviousDays(PREVIOUS_DAYS);
 
 function shouldShowDay(day) {
-    return needsCharge(day.distance, getCarRange());
+    var onlyProblemDays = document.getElementById("only-problem-days").checked
+    return (onlyProblemDays)? needsCharge(day.distance, getCarRange()) : true;
 }
 
-// TODO - have a dropdown menu to choose between all and open
 function getStations() {
-    return getAllStations();
+    var includePlannedStations = document.getElementById("stations-to-use").checked
+    return (includePlannedStations)? getAllStations() : getOpenStations();
 }
 
 function getOpenStations() {
@@ -101,7 +102,6 @@ function getAllStations() {
     return charging_stations.open.concat(charging_stations.other);
 }
 
-// TODO - need to store trip locations along the way
 function nearestChargingStation(location, stations) {
     var lat1 = location.lat;
     var long1 = location.long;
@@ -121,4 +121,17 @@ function nearestChargingStation(location, stations) {
     }
     closest.distance = round(closestDist, 1);
     return closest;
+}
+
+function geoJsonFromLocations(locations) {
+    var geoJson = {
+        type: "LineString",
+        coordinates: []
+    };
+
+    for (var i = 0; i < locations.length; i++) {
+        var location = locations[i];
+        geoJson.coordinates.push([location.long, location.lat]);
+    }
+    return geoJson;
 }

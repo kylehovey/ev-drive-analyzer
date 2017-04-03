@@ -116,6 +116,8 @@ function tableForTrips(day) {
             var outputString = nearest.name + " - " + nearest.city + ", " + nearest.state + " - " + nearest.distance + " miles";
             td4 = textNode(td4, outputString);
         }
+        // Used for testing to plot trip locations
+        //td4 = textNode(td4, JSON.stringify(geoJsonFromLocations(currTrip.locations)));
 
         tr.appendChild(td1);
         tr.appendChild(td2);
@@ -172,7 +174,7 @@ function outputLatestDaysTrips(latestDays) {
         tr.appendChild(td1);
         tr.appendChild(td2);
         tr.appendChild(td3);
-        table.appendChild(tr);
+        tBody.appendChild(tr);
     }
     table.appendChild(tBody);
 
