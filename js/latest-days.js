@@ -1,7 +1,7 @@
 
 function getLatestDaysFromResults(results, numberOfDays) {
     var days = results.days;
-    var lastXDays = days.slice(0, Math.min(numberOfDays, days.length));
+    var lastXDays = days.slice(Math.max(days.length-numberOfDays, 1));
     return lastXDays;
 }
 
@@ -11,7 +11,7 @@ function getLatestTripsFromResults(results, numberOfDays) {
     var lastTrip = trips[trips.length-1];
     var lastTrips = [];
     var earliestTimestamp = lastTrip.startTime - (numberOfDays*SECONDS_PER_DAY);
-    for (var i = 0; i < trips.length; i++) {
+    for (var i = trips.length-1; i > 0; i--) {
         var currTrip = trips[i];
         if (currTrip.startTime > earliestTimestamp) {
             lastTrips.push(currTrip);
@@ -39,6 +39,7 @@ function getLatestDaysTripsFromResults(results, numberOfDays) {
         }
         lastDays[i].trips = tripsForDay;
     }
+    lastDays.reverse();
     return lastDays;
 }
 

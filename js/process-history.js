@@ -10,6 +10,8 @@
 
 function processLocationHistory(locationJSON) {
     var locations = locationJSON.locations;
+    // Need it to go from earliest to latest for time calculations
+    locations.reverse();
 
     var trips = [], days = [], summary = {totalDistance: 0};
     var prevTs = 0, prevLat = 0, prevLong = 0; // previous location's values
@@ -27,7 +29,7 @@ function processLocationHistory(locationJSON) {
             var distanceDelta = Math.abs(distance(lat, long, prevLat, prevLong));
 
             // Ignore point if it is very close (.01 miles is about 1 block)
-            if (distanceDelta < 0.05) {
+            if (distanceDelta < 0.02) {
                 continue;
             }
             
