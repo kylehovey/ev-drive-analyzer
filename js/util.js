@@ -21,6 +21,12 @@ var cars = {
     },
     "500e": {
         "range": 84
+    },
+    "bike": {
+        "range": 20
+    },
+    "scooter": {
+        "range": 10
     }
 };
 

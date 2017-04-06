@@ -24,12 +24,18 @@
           <div class="panel-body">
             <label for="select-car">Electric vehicle:</label>
             <select id="select-car">
-              <option value="500e">Fiat 500e (84 miles)</option>
-              <option value="leaf">Nissan Leaf (107 miles)</option>
-              <option value="i3">BMW i3 (114 miles)</option>
-              <option value="model-3">Tesla Model 3 (215 miles)</option>
-              <option value="model-x">Tesla Model X (257 miles)</option>
-              <option value="model-s">Tesla Model S (294 miles)</option>
+              <optgroup label="Cars">
+                <option value="500e">Fiat 500e (84 miles)</option>
+                <option value="leaf">Nissan Leaf (107 miles)</option>
+                <option value="i3">BMW i3 (114 miles)</option>
+                <option value="model-3">Tesla Model 3 (215 miles)</option>
+                <option value="model-x">Tesla Model X (257 miles)</option>
+                <option value="model-s">Tesla Model S (294 miles)</option>
+              </optgroup>
+              <optgroup label="Other">
+                <option value="scooter">Scooter (10 miles)</option>
+                <option value="bike">Bike (20 miles)</option>
+              </optgroup>
             </select>
             <br>
             <label for="previous-days">Last days:</label>
