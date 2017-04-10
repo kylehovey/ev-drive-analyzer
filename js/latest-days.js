@@ -1,46 +1,9 @@
 
-function getLatestDaysFromResults(results, numberOfDays) {
+function getLatestDaysTripsFromResults(results, numberOfDays) {
     var days = results.days;
     var lastXDays = days.slice(Math.max(days.length-numberOfDays, 1));
+    lastXDays.reverse();
     return lastXDays;
-}
-
-var SECONDS_PER_DAY = 86400;
-function getLatestTripsFromResults(results, numberOfDays) {
-    var trips = results.trips;
-    var lastTrip = trips[trips.length-1];
-    var lastTrips = [];
-    var earliestTimestamp = lastTrip.startTime - (numberOfDays*SECONDS_PER_DAY);
-    for (var i = trips.length-1; i > 0; i--) {
-        var currTrip = trips[i];
-        if (currTrip.startTime > earliestTimestamp) {
-            lastTrips.push(currTrip);
-        } else {
-            break;
-        }
-    }
-    lastTrips.reverse();
-    return lastTrips;
-}
-
-function getLatestDaysTripsFromResults(results, numberOfDays) {
-    var lastTrips = getLatestTripsFromResults(results, PREVIOUS_DAYS);
-    var lastDays = getLatestDaysFromResults(results, PREVIOUS_DAYS);
-
-    for (var i = 0; i < lastDays.length; i++) {
-        var currDay = lastDays[i];
-        var date = currDay.date;
-        var tripsForDay = [];
-        for (var j = 0; j < lastTrips.length; j++) {
-            var currTrip = lastTrips[j];
-            if (currTrip.startDatetime.includes(date)) {
-                tripsForDay.push(currTrip);
-            }
-        }
-        lastDays[i].trips = tripsForDay;
-    }
-    lastDays.reverse();
-    return lastDays;
 }
 
 // Takes moment.duration as input
@@ -118,7 +81,7 @@ function tableForTrips(day) {
             td4 = textNode(td4, outputString);
         }
         // Used for testing to plot trip locations
-        //td4 = textNode(td4, JSON.stringify(geoJsonFromLocations(currTrip.locations)));
+        // td4 = textNode(td4, JSON.stringify(geoJsonFromLocations(currTrip.locations)));
 
         tr.appendChild(td1);
         tr.appendChild(td2);

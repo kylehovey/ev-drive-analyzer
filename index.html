@@ -14,7 +14,7 @@
     <div class="container">
       <div class="jumbotron">
         <h1>Electric Vehicle Recommender</h1>
-        <p>Use this to see if owning an electric vehicle would be feasible based on your travel patterns</p>
+        <p>See if owning an electric vehicle would be feasible based on your travel patterns</p>
         <p>Download your location history in JSON format from <a href="https://takeout.google.com/settings/takeout/custom/location_history?hl=en&gl=US&expflags">Google Takeout</a></p>
         <p>Upload your LocationHistory.json file here:</p>
         <input type="file" id="selectFiles" value="Import" />
@@ -56,6 +56,8 @@
           <div class="panel-body">
             <div id="chart_trips_div"></div>
             <div id="chart_days_div"></div>
+            <div id="chart_no_charging_div"></div>
+            <div id="chart_with_charging_div"></div>
           </div>
           <div class="panel-footer">The colors in the graphs above indicate how much of your driving patterns the vehicle can handle.</div>
         </div>

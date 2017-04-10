@@ -9,8 +9,7 @@ function updateUI() {
 
     var spinner = getSpinner();
 
-    createChartByTrip(results['trips']);
-    createChartByDay(results['days']);
+    outputChartSummary(results);
     outputLatestDaysTrips(latestDaysTrips);
 
     document.getElementById("all_output").style.visibility = "visible";

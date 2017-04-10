@@ -1,8 +1,8 @@
 // Takes Google Location History JSON as input and produces a summarized output with trips and days
 // JSON from processLocationHistory() looks like:
 // {
-//     "trips": [{"distance": 1000, "avgMph": 30, "totalTime": 1000, "startDatetime": "2017-03-14 03:30:00", startTime: 14123123}],
-//     "days": [{"date": "2017-03-14", "distance": 1000}],
+//     "trips": [{"distance": 1000, "totalTime": 1000, "startDatetime": "2017-03-14 03:30:00", startTime: 14123123, locations: [{"lat": 1.1, "long": -1.1}]}],
+//     "days": [{"date": "2017-03-14", "distance": 1000, "trips": [{}]}],
 //     "summary": ["totalDistance": 1000000, "avgDistancePerDay": 100, "totalDays": 100, "totalTrips": 100]
 // }
 // Inspired by https://github.com/Scarygami/location-history-json-converter
@@ -18,6 +18,7 @@ function processLocationHistory(locationJSON) {
     var currTrip = createTripObject();
     var currDate = "";
     var currDayDistance = 0;
+    var currDayTrips = [];
     for (var i = 0; i < locations.length; i++) {
         var loc = locations[i];
         var ts = parseInt(loc.timestampMs);
@@ -36,7 +37,9 @@ function processLocationHistory(locationJSON) {
             // Process trips, create new one if large gap in time or distance
             if (timeDelta > 10 || distanceDelta > 40) {
                 if (isValidTrip(currTrip)) {
-                    addTrip(currTrip, trips);
+                    roundTripValues(currTrip);
+                    trips.push(currTrip);
+                    currDayTrips.push(currTrip);
                 }
                 currTrip = createTripObject();
             }
@@ -45,7 +48,8 @@ function processLocationHistory(locationJSON) {
             // Process days
             if (newDate != currDate) {
                 if (isValidDay(currDate, currDayDistance)) {
-                    days.push({date: currDate, distance: round(currDayDistance, 1)})
+                    days.push({date: currDate, distance: round(currDayDistance, 1), trips: currDayTrips})
+                    currDayTrips = []
                 }
                 currDate = newDate;
                 currDayDistance = 0;
@@ -59,10 +63,12 @@ function processLocationHistory(locationJSON) {
         prevLong = long;
     }
     if (isValidTrip(currTrip)) {
-        addTrip(currTrip, trips);
+        roundTripValues(currTrip);
+        trips.push(currTrip);
+        currDayTrips.push(currTrip);
     }
     if (isValidDay(currDate, currDayDistance)) {
-        days.push({date: currDate, distance: round(currDayDistance, 1)})
+        days.push({date: currDate, distance: round(currDayDistance, 1), trips: currDayTrips})
     }
 
     summary.totalTrips = trips.length;
@@ -72,11 +78,10 @@ function processLocationHistory(locationJSON) {
     return results;
 }
 
-function addTrip(trip, trips) {
+function roundTripValues(trip) {
     trip.startTime = round(trip.startTime, 0);
     trip.totalTime = round(trip.totalTime, 0);
     trip.distance = round(trip.distance, 1);
-    trips.push(trip);
 }
 
 function createTripObject() {
