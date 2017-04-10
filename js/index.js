@@ -70,3 +70,12 @@ document.getElementById('only-problem-days').onchange = function() {
 document.getElementById('stations-to-use').onchange = function() {
     updateUI();
 }
+
+document.getElementById('use-log-scale').onchange = function(event) {
+    if (event.target.checked) {
+        defaultBarChartOptions.vAxis.scaleType = 'log'
+    } else {
+        defaultBarChartOptions.vAxis.scaleType = 'linear'
+    }
+    updateUI();
+}

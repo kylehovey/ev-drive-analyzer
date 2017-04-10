@@ -1,7 +1,7 @@
 google.charts.load('current', {packages: ['corechart', 'bar']});
 
 var defaultBarChartOptions = {
-    title: 'Miles traveled',
+    title: 'Miles traveled (per trip)',
     hAxis: {
         title: 'Number of miles (bucketed)',
         viewWindow: {
@@ -11,7 +11,7 @@ var defaultBarChartOptions = {
     },
     vAxis: {
         title: 'Number of trips',
-        scaleType: 'log'
+        scaleType: 'linear'
     },
     legend: {position: 'none'}
 };
@@ -57,6 +57,7 @@ function createChartByDay(days) {
     data.addRows(prepDataForGoogleChart(days, 10.0));
 
     var dayChartOptions = JSON.parse(JSON.stringify(defaultBarChartOptions));
+    dayChartOptions.title = "Miles traveled (per day)"
     dayChartOptions.vAxis.title = "Number of days";
 
     var chart = new google.visualization.ColumnChart(document.getElementById('chart_days_div'));
@@ -131,7 +132,8 @@ function createPieCharts(days) {
             if (canChargeTrips(day.trips)) {
                 chargedColor = "green"
             } else {
-                console.log(day);
+                // Found trip that cannot use chargers
+                // console.log(day);
             }
         }
         if (dayColor == "green") {

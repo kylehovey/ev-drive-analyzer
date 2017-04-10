@@ -1,4 +1,4 @@
-var PREVIOUS_DAYS = 30;
+var PREVIOUS_DAYS = 90;
 
 var cars = {
     "none": {
@@ -21,6 +21,9 @@ var cars = {
     },
     "500e": {
         "range": 84
+    },
+    "bike-40": {
+        "range": 40
     },
     "bike": {
         "range": 20
