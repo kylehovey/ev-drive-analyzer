@@ -77,13 +77,14 @@ function shouldStopChecking(distanceTraveled, carRange) {
 }
 
 function shouldStartChecking(distanceTraveled, carRange) {
-    return (distanceTraveled*1.0 / carRange) > .75;
+    return (distanceTraveled*1.0 / carRange) > .7;
 }
 
 // With long trips (75% of range) on a given day, check if charging stations exist
 function canChargeTrips(trips) {
     var carRange = getCarRange();
-    var maxDistance = carRange * 0.1; // Max distance to look for charging station
+    // Max distance to look for charging station - either 10% of max range or 15 miles
+    var maxDistance = Math.min(carRange * 0.1, 10);
     var stations = getStations();
 
     // Look at all trips to see if need fill up

@@ -9,11 +9,13 @@ function updateUI() {
 
     var spinner = getSpinner();
 
-    outputChartSummary(results);
-    outputLatestDaysTrips(latestDaysTrips);
+    setTimeout(function() {
+        outputChartSummary(results);
+        outputLatestDaysTrips(latestDaysTrips);
 
-    document.getElementById("all_output").style.visibility = "visible";
-    spinner.stop();
+        document.getElementById("all_output").style.visibility = "visible";
+        spinner.stop();
+    }, 0);    
 }
 
 document.getElementById('selectFiles').onchange = function() {
@@ -54,14 +56,10 @@ document.getElementById('previous-days').oninput = function(event) {
     var prevDaysString = event.target.value;
     var prevDays = parseInt(prevDaysString);
     if (Number.isInteger(prevDays)) {
-        var spinner = getSpinner();
-
         setPreviousDays(parseInt(prevDaysString))
         latestDaysTrips = getLatestDaysTripsFromResults(results, PREVIOUS_DAYS);
         console.log(latestDaysTrips);
         updateUI();
-        
-        spinner.stop();
     }
 }
 
