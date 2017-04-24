@@ -52,6 +52,8 @@ document.getElementById('selectFiles').onchange = function() {
         return false;
     }
 
+    document.getElementById('selectFilesText').value = files.item(0).name
+
     var spinner = getSpinner();
 
     var fr = new FileReader();
@@ -67,6 +69,8 @@ document.getElementById('selectFiles2').onchange = function() {
     if (files.length <= 0) {
         return false;
     }
+
+    document.getElementById('selectFilesText2').value = files.item(0).name
 
     var spinner = getSpinner();
 

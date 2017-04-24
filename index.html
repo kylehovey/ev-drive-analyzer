@@ -17,8 +17,15 @@
         <h1>Electric Vehicle Recommender</h1>
         <p>See if owning an electric vehicle would be feasible based on your travel patterns</p>
         <p>Download your location history in JSON format from <a href="https://takeout.google.com/settings/takeout/custom/location_history?hl=en&gl=US&expflags">Google Takeout</a></p>
-        <p>Upload your LocationHistory.json file here:</p>
-        <input type="file" id="selectFiles" value="Import" />
+        <p>Upload your LocationHistory.json file:</p>
+        <div class="input-group">
+            <label class="input-group-btn">
+                <span class="btn btn-primary">
+                    Browse&hellip; <input id="selectFiles" type="file" style="display: none;">
+                </span>
+            </label>
+            <input id="selectFilesText" type="text" class="form-control" readonly>
+        </div>
         <br>
         <div class="panel panel-default">
           <div class="panel-heading">Options</div>

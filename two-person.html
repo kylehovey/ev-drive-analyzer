@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Electric Vehicle Recommender</title>
+    <title>Two-person Vehicle Recommender</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -15,9 +15,25 @@
       <div class="jumbotron">
         <a id="forkme_banner" href="https://github.com/bradsrichardson/plug-classification">View on GitHub</a>
         <h1>Two-person Vehicle Recommender</h1>
-        <p>Upload your LocationHistory.json files here:</p>
-        <input type="file" id="selectFiles" value="Import" />
-        <input type="file" id="selectFiles2" value="Import" />
+        <p>Upload your LocationHistory.json files:</p>
+        <div class="input-group">
+            <label class="input-group-btn">
+                <span class="btn btn-primary">
+                    Browse&hellip; <input id="selectFiles" type="file" style="display: none;">
+                </span>
+            </label>
+            <input id="selectFilesText" type="text" class="form-control" readonly>
+        </div>
+        <br>
+        <div class="input-group">
+            <label class="input-group-btn">
+                <span class="btn btn-primary">
+                    Browse&hellip; <input id="selectFiles2" type="file" style="display: none;">
+                </span>
+            </label>
+            <input id="selectFilesText2" type="text" class="form-control" readonly>
+        </div>
+        <br>
         <div class="panel panel-default">
           <div class="panel-heading">Options</div>
           <div class="panel-body">

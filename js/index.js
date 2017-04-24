@@ -24,6 +24,8 @@ document.getElementById('selectFiles').onchange = function() {
         return false;
     }
 
+    document.getElementById('selectFilesText').value = files.item(0).name
+
     var spinner = getSpinner();
 
     var fr = new FileReader();
