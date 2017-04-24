@@ -14,12 +14,10 @@
     <div class="container">
       <div class="jumbotron">
         <a id="forkme_banner" href="https://github.com/bradsrichardson/plug-classification">View on GitHub</a>
-        <h1>Electric Vehicle Recommender</h1>
-        <p>See if owning an electric vehicle would be feasible based on your travel patterns</p>
-        <p>Download your location history in JSON format from <a href="https://takeout.google.com/settings/takeout/custom/location_history?hl=en&gl=US&expflags">Google Takeout</a></p>
-        <p>Upload your LocationHistory.json file here:</p>
+        <h1>Two-person Vehicle Recommender</h1>
+        <p>Upload your LocationHistory.json files here:</p>
         <input type="file" id="selectFiles" value="Import" />
-        <br>
+        <input type="file" id="selectFiles2" value="Import" />
         <div class="panel panel-default">
           <div class="panel-heading">Options</div>
           <div class="panel-body">
@@ -40,9 +38,6 @@
               </optgroup>
             </select>
             <br>
-            <label for="use-log-scale">Use log scale on graph:</label>
-            <input id="use-log-scale" type="checkbox">
-            <br>
             <label for="stations-to-use">Include planned charging stations:</label>
             <input id="stations-to-use" type="checkbox" checked>
             <br>
@@ -54,19 +49,9 @@
             <br>
           </div>
         </div>
-        <div><a href="two-person.html">Two-person Vehicle Recommender</a></div>
       </div>
 
       <div id="all_output" style="visibility: hidden;">
-        <div class="panel panel-default">
-          <div class="panel-heading"><h3>Overall summary</h3></div>
-          <div class="panel-body">
-            <div id="chart_trips_div"></div>
-            <div id="chart_days_div"></div>
-            <div id="chart_no_charging_div"></div>
-            <div id="chart_with_charging_div"></div>
-          </div>
-        </div>
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3>Last <span id="prev_days_span"></span> days analysis</h3></div>
@@ -86,9 +71,8 @@
 
     <script src="js/util.js"></script>
     <script src="js/process-history.js"></script>
-    <script src="js/graphs.js"></script>
-    <script src="js/latest-days.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/latest-days-two-person.js"></script>
+    <script src="js/two-person.js"></script>
 
     <script src="js/charging-stations.js" async></script>
   </body>

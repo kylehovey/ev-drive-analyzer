@@ -15,7 +15,7 @@ function updateUI() {
 
         document.getElementById("all_output").style.visibility = "visible";
         spinner.stop();
-    }, 0);    
+    }, 0);
 }
 
 document.getElementById('selectFiles').onchange = function() {

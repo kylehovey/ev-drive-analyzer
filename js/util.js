@@ -132,6 +132,7 @@ function nearestChargingStation(location, stations) {
     return closest;
 }
 
+// Geo json object for debugging
 function geoJsonFromLocations(locations) {
     var geoJson = {
         type: "LineString",
@@ -143,4 +144,30 @@ function geoJsonFromLocations(locations) {
         geoJson.coordinates.push([location.long, location.lat]);
     }
     return geoJson;
+}
+
+// Takes moment.duration as input
+// returns "2 hour(s) 30 minute(s)" properly formatted
+function formatDuration(momentDuration) {
+    var hours = momentDuration.hours();
+    var minutes = momentDuration.minutes();
+    var output = "";
+    if (hours > 0) {
+        output += hours + (hours == 1 ? " hour" : " hours");
+        if (minutes > 0) {
+            output += " ";
+        }
+    }
+    if (minutes > 0) {
+        output += minutes + (minutes == 1 ? " minute" : " minutes");
+    }
+    return output;
+}
+
+// Latest X days from result set (for latest-days.js files)
+function getLatestDaysTripsFromResults(results, numberOfDays) {
+    var days = results.days;
+    var lastXDays = days.slice(Math.max(days.length-numberOfDays, 1));
+    lastXDays.reverse();
+    return lastXDays;
 }
