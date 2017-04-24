@@ -93,7 +93,8 @@ document.getElementById('previous-days').oninput = function(event) {
         setPreviousDays(parseInt(prevDaysString))
         latestDaysTrips1 = getLatestDaysTripsFromResults(results1, PREVIOUS_DAYS);
         latestDaysTrips2 = getLatestDaysTripsFromResults(results2, PREVIOUS_DAYS);
-        console.log(latestDaysTrips);
+        console.log(latestDaysTrips1);
+        console.log(latestDaysTrips2);
         updateUI();
     }
 }
