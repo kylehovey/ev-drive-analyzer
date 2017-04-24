@@ -81,18 +81,40 @@ function createCellsForDay(distanceCell, tripCell, currDay) {
 
 // TODO - pick EV for greatest distance if < car range, otherwise flip
 function determineCarToDrive(cell1, cell2, day1, day2) {
-    if (day1.distance == 0) {
-        textNode(cell1, "Gas");
-        textNode(cell2, "EV");
-    } else if (day2.distance == 0) {
-        textNode(cell1, "EV");
-        textNode(cell2, "Gas");
-    } else if (day1.distance <= day2.distance) {
-        textNode(cell1, "EV");
-        textNode(cell2, "Gas");
+    var range = getCarRange();
+    var day1Color = getColorForValue(day1.distance, range);
+    var day2Color = getColorForValue(day2.distance, range);
+    var gasForFirst = false;
+    if (day1Color != "red" || day2Color != "red") {
+        // At least one of the cars was within the EV range
+        if (day1Color == "red") {
+            // car is out of range so take gas
+            gasForFirst = true;
+        } else if (day2Color == "red") {
+            // NOP
+        } else if (day1.distance == 0) {
+            // car didn't travel so give gas
+            gasForFirst = true;
+        } else if (day2.distance == 0) {
+            // NOP
+        } else if (day2.distance > day1.distance) {
+            // car 1 travelled less, give it gas car
+            gasForFirst = true;
+        }
     } else {
+        // If both travelled too far, pick whichever drove less for EV to reduce fillups
+        if (day1.distance <= day2.distance) {
+            // NOP
+        } else {
+            gasForFirst = true;
+        }
+    }
+    if (gasForFirst) {
         textNode(cell1, "Gas");
-        textNode(cell2, "EV");
+        textNode(cell2, "EV")
+    } else {
+        textNode(cell1, "EV");
+        textNode(cell2, "Gas");
     }
 }
 
