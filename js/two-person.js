@@ -77,3 +77,27 @@ document.getElementById('selectFiles2').onchange = function() {
     }
     fr.readAsText(files.item(0));
 }
+
+document.getElementById('select-car').onchange = function() {
+    updateUI();
+}
+
+document.getElementById('previous-days').oninput = function(event) {
+    var prevDaysString = event.target.value;
+    var prevDays = parseInt(prevDaysString);
+    if (Number.isInteger(prevDays)) {
+        setPreviousDays(parseInt(prevDaysString))
+        latestDaysTrips1 = getLatestDaysTripsFromResults(results1, PREVIOUS_DAYS);
+        latestDaysTrips2 = getLatestDaysTripsFromResults(results2, PREVIOUS_DAYS);
+        console.log(latestDaysTrips);
+        updateUI();
+    }
+}
+
+document.getElementById('only-problem-days').onchange = function() {
+    updateUI();
+}
+
+document.getElementById('stations-to-use').onchange = function() {
+    updateUI();
+}
