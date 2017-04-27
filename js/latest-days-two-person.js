@@ -31,7 +31,7 @@ function tableForTrips(day) {
 
         var td1 = textNode(elem('td'), date.format("LT"));
         var td2 = textNode(elem('td'), currTrip.distance);
-        // td2.className = getClassForValue(currTrip.distance, getCarRange());
+        td2.className = getClassForValue(currTrip.distance, getCarRange());
         var td3 = textNode(elem('td'), formatDuration(duration));
         var td4 = elem('td');
 
@@ -74,7 +74,7 @@ function createCellsForDay(distanceCell, tripCell, currDay) {
         textNode(tripCell, "No trips");
     } else {
         textNode(distanceCell, currDay.distance);
-        // distanceCell.className = getClassForValue(currDay.distance, getCarRange());
+        distanceCell.className = getClassForValue(currDay.distance, getCarRange());
         tripCell.appendChild(tableForTrips(currDay));
     }
 }
