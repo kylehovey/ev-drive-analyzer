@@ -48,7 +48,7 @@ function textNode(elem, string) {
 }
 
 function getColorForValue(value, carRange) {
-    if (value < carRange * .75) {
+    if (value < carRange * .90) {
         return 'green';
     } else if (value < carRange) {
         return 'yellow';
@@ -58,11 +58,11 @@ function getColorForValue(value, carRange) {
 }
 
 function needsCharge(distance, carRange) {
-    return distance > carRange * .75;
+    return distance > carRange * .90;
 }
 
 function getClassForValue(value, carRange) {
-    if (value < carRange * .75) {
+    if (value < carRange * .90) {
         return '';
     } else if (value < carRange) {
         return 'warning';

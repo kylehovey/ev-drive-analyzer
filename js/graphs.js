@@ -1,12 +1,12 @@
 google.charts.load('current', {packages: ['corechart', 'bar']});
 
 var defaultBarChartOptions = {
-    title: 'Miles traveled (per trip)',
+    title: 'Trip range distribution',
     hAxis: {
         title: 'Number of miles (bucketed)',
         viewWindow: {
             min: 0,
-            max: 500
+            max: 400
         }
     },
     vAxis: {
@@ -57,7 +57,7 @@ function createChartByDay(days) {
     data.addRows(prepDataForGoogleChart(days, 10.0));
 
     var dayChartOptions = JSON.parse(JSON.stringify(defaultBarChartOptions));
-    dayChartOptions.title = "Miles traveled (per day)"
+    dayChartOptions.title = "Daily travel range distribution"
     dayChartOptions.vAxis.title = "Number of days";
 
     var chart = new google.visualization.ColumnChart(document.getElementById('chart_days_div'));
@@ -67,7 +67,7 @@ function createChartByDay(days) {
 function pieDataTable(good, possible, required) {
     return google.visualization.arrayToDataTable([
         ["Status", "Days"],
-        ["Good", good],
+        ["No fill-up required", good],
         ["Possible fill-up", possible],
         ["Requires fill-up", required]
     ]);
@@ -158,7 +158,7 @@ function createPieCharts(days) {
     var pieNoCharge = new google.visualization.PieChart(document.getElementById('chart_no_charging_div'));
     var pieCharge = new google.visualization.PieChart(document.getElementById('chart_with_charging_div'));
     pieNoCharge.draw(data, {
-        title: "Days range exhausted (not allowing charges)",
+        title: "Daily range usage (no mid-trip charges)",
         slices: {
             0: {color: "green"},
             1: {color: "yellow"},
@@ -166,7 +166,7 @@ function createPieCharts(days) {
         }
     });
     pieCharge.draw(chargeData, {
-        title: "Days range exhausted (allowing charges)",
+        title: "Daily range usage (allowing mid-trip charges)",
         slices: {
             0: {color: "green"},
             1: {color: "yellow"},
