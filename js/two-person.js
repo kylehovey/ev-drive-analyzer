@@ -1,7 +1,5 @@
 var results1 = null;
 var results2 = null;
-var latestDaysTrips1 = null;
-var latestDaysTrips2 = null;
 
 function updateUI(fromFile = false) {
     if (results1 == null || results2 == null) {
@@ -14,7 +12,13 @@ function updateUI(fromFile = false) {
     var spinner = getSpinner();
 
     setTimeout(function() {
-        outputLatestDaysTrips(latestDaysTrips1, latestDaysTrips2);
+        var combined = assignVehiclesAndCombine(results1, results2, PREVIOUS_DAYS);
+        var combinedLatestDays = combined.latestDays;
+        var evDays = combined.evDays;
+        console.log(evDays);
+        console.log(combinedLatestDays);
+        outputLatestDaysTrips(combinedLatestDays);
+        // TODO - use evDays and send to graph stuff
 
         document.getElementById("all_output").style.visibility = "visible";
         spinner.stop();
@@ -31,16 +35,12 @@ function parseFile(e, isFirst) {
     }
 
     var results0 = processLocationHistory(parsedContents);
-    var latestDaysTrips0 = getLatestDaysTripsFromResults(results0, PREVIOUS_DAYS);
 
     console.log(results0);
-    console.log(latestDaysTrips0);
     if (isFirst) {
         results1 = results0;
-        latestDaysTrips1 = latestDaysTrips0;
     } else {
         results2 = results0;
-        latestDaysTrips2 = latestDaysTrips0;
     }
 
     updateUI(true);
@@ -91,10 +91,6 @@ document.getElementById('previous-days').oninput = function(event) {
     var prevDays = parseInt(prevDaysString);
     if (Number.isInteger(prevDays)) {
         setPreviousDays(parseInt(prevDaysString))
-        latestDaysTrips1 = getLatestDaysTripsFromResults(results1, PREVIOUS_DAYS);
-        latestDaysTrips2 = getLatestDaysTripsFromResults(results2, PREVIOUS_DAYS);
-        console.log(latestDaysTrips1);
-        console.log(latestDaysTrips2);
         updateUI();
     }
 }
