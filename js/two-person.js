@@ -14,11 +14,13 @@ function updateUI(fromFile = false) {
     setTimeout(function() {
         var combined = assignVehiclesAndCombine(results1, results2, PREVIOUS_DAYS);
         var combinedLatestDays = combined.latestDays;
-        var evDays = combined.evDays;
-        console.log(evDays);
+        var evOnlyResults = combined.evOnlyResults;
+        
+        console.log(evOnlyResults);
         console.log(combinedLatestDays);
+
+        outputChartSummary(evOnlyResults);
         outputLatestDaysTrips(combinedLatestDays);
-        // TODO - use evDays and send to graph stuff
 
         document.getElementById("all_output").style.visibility = "visible";
         spinner.stop();

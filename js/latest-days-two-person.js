@@ -3,15 +3,14 @@
 // Use a simple algorithm to decide who gets gas or EV car, return an array of those as well
 function assignVehiclesAndCombine(results1, results2, numberOfDays) {
     var combinedDays = [];
-    var evDays = [];
+    var evOnlyResults = {days: [], trips: []};
 
-    var latestDays1 = results1.days.slice(Math.max(results1.days.length-numberOfDays, 1));
-    var latestDays2 = results2.days.slice(Math.max(results2.days.length-numberOfDays, 1));
+    var latestDays1 = results1.days.slice(); //results1.days.slice(Math.max(results1.days.length-numberOfDays, 1));
+    var latestDays2 = results2.days.slice(); // results2.days.slice(Math.max(results2.days.length-numberOfDays, 1));
     latestDays1.reverse();
     latestDays2.reverse();
 
     var range = getCarRange();
-
     for (var i = 0; i < latestDays1.length; i++) {
         var day1 = latestDays1[i];
         var day2 = null;
@@ -56,9 +55,11 @@ function assignVehiclesAndCombine(results1, results2, numberOfDays) {
         day1.car = gasForFirst? "Gas" : "EV";
         day2.car = gasForFirst? "EV" : "Gas";
         if (day1.car == "EV") {
-            evDays.push(day1);
+            evOnlyResults.days.push(day1);
+            evOnlyResults.trips.push(...day1.trips);
         } else {
-            evDays.push(day2);
+            evOnlyResults.days.push(day2);
+            evOnlyResults.trips.push(...day2.trips);
         }
 
         if (i < numberOfDays) {
@@ -69,9 +70,11 @@ function assignVehiclesAndCombine(results1, results2, numberOfDays) {
             });
         }
     }
+    // Reverse so it matches the normal trip output
+    evOnlyResults.trips.reverse();
     return {
         latestDays: combinedDays,
-        evDays: evDays
+        evOnlyResults: evOnlyResults
     };
 }
 

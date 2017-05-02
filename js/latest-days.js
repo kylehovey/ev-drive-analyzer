@@ -1,4 +1,12 @@
 
+// Latest X days from result set (for latest-days.js files)
+function getLatestDaysTripsFromResults(results, numberOfDays) {
+    var days = results.days;
+    var lastXDays = days.slice(Math.max(days.length-numberOfDays, 1));
+    lastXDays.reverse();
+    return lastXDays;
+}
+
 function tableForTrips(day) {
     var table = elem('table');
     table.className = "table";
