@@ -29,8 +29,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Set up routes
-//app.use('/', index);
-//app.use('/api', api);
+app.use('/', index);
+app.use('/api', api);
 
 // Set up janitor middlewares
 app.use(notFoundHandler);

@@ -1,18 +1,47 @@
 doctype html
 html
   head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+
     title=title
-    link(rel='stylesheet', href='/style/main.css')
+
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Roboto")
+
+    link(rel='stylesheet', href='/style/global.css')
     link(rel='stylesheet', href='/style/external/bootstrap.min.css')
     link(rel='stylesheet', href='/style/external/sweetalert.min.css')
   body
-    block content
+    div.container
+      div.jumbotron
+        a(id="forkme_banner", href="https://github.com/kylehovey/ev-drive-analyzer") View on GitHub
+        h1=title
+        p=description
+
+        block jumbotron
+
+      block content
+
+    block getScripts
+      script(src="https://www.gstatic.com/charts/loader.js")
+      script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js")
+
     block externalScripts
       script(src="/js/external/polyfill.min.js")
       script(src="/js/external/lodash.min.js")
       script(src="/js/external/jquery.min.js")
       script(src="/js/external/bootstrap.min.js")
+      script(src="/js/external/spin.min.js")
+      script(src="/js/external/moment.min.js")
       script(src="/js/external/sweetalert.min.js")
+
+    block globalScripts
+      script(src="js/app/global/util.js")
+      script(src="js/app/global/process-history.js")
+      script(src="js/app/global/graphs.js")
+      script(src="js/app/global/latest-days.js")
+      script(src="js/app/global/index.js")
+      script(src="js/app/global/charging-stations.js", async=true)
     block components
       // Example Component
       /// (Compiled from /src/js/components/example/example.js)
