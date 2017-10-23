@@ -1,14 +1,22 @@
 extends layout
 
 append jumbotron
-  p Download your location history in JSON format from #[a(href="https://takeout.google.com/settings/takeout/custom/location_history?hl=en&gl=US&expflags") Google Takeout]
   p Upload your LocationHistory.json file:
+
   div.input-group
     label.input-group-btn
       span.btn.btn-primary Browse&hellip;
       input(id="selectFiles", type="file", style="display:none")
     input.form-control(id="selectFilesText", type="text", readonly="readonly")
+
   br
+
+  div.input-group
+    label.input-group-btn
+      span.btn.btn-primary Browse&hellip;
+      input(id="selectFiles2", type="file", style="display:none")
+    input.form-control(id="selectFilesText2", type="text", readonly="readonly")
+
   div.panel.panel-default
     div.panel-heading Options
     div.panel-body
@@ -48,7 +56,7 @@ append jumbotron
 
       br
   div
-    a(href="two-person") Two-person Vehicle Recommender
+    a(href="/") One-person Vehicle Recommender
 
 append content
   div(id="all_output", style="visibility: hidden")
@@ -68,8 +76,8 @@ append content
   div(id="spinner")
 
 append userScripts
-  script(src="/js/app/global/latest-days.js")
-  script(src="/js/app/global/index.js")
+  script(src="/js/app/global/latest-days-two-person.js")
+  script(src="/js/app/global/two-person.js")
 
   script(src="/js/app/index/app.js")
   script(src="/js/app/index/main.js")

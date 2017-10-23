@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 
 // Routes
 const index = require('./app_modules/express/routes/index');
+const twoPerson = require('./app_modules/express/routes/two-person');
 const api = require('./app_modules/express/routes/api');
 
 // Root middlewares
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Set up routes
 app.use('/', index);
+app.use('/two-person', twoPerson);
 app.use('/api', api);
 
 // Set up janitor middlewares
