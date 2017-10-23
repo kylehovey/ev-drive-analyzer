@@ -19,7 +19,7 @@ const errorHandler = require('./app_modules/express/middlewares/error.js');
 var app = express();
 
 // View engine setup
-app.set('views', path.join(__dirname, 'app_modules/express/views'));
+app.set('views', path.join(__dirname, 'app_modules/pug/views'));
 app.set('view engine', 'pug');
 
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

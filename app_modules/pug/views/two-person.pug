@@ -1,0 +1,31 @@
+extends layout
+
+include ../mixins/vehicleDataEntry
+include ../mixins/dataSummaryTable
+include ../mixins/fileInput
+
+append jumbotron
+  p Upload your LocationHistory.json files:
+
+  +fileInput("")
+
+  br
+
+  +fileInput("2")
+
+  br
+
+  +vehicleDataEntry
+
+  div
+    a(href="/") One-person Vehicle Recommender
+
+append content
+  +dataSummaryTable
+
+append userScripts
+  script(src="/js/app/global/latest-days-two-person.js")
+  script(src="/js/app/global/two-person.js")
+
+  script(src="/js/app/index/app.js")
+  script(src="/js/app/index/main.js")

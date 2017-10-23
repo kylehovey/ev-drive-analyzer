@@ -1,0 +1,16 @@
+mixin dataSummaryTable
+  div(id="all_output", style="visibility: hidden")
+    div.panel.panel-default
+      div.panel-heading
+        h3 Overall summary
+      div.panel-body
+        div(id="chart_trips_div")
+        div(id="chart_days_div")
+        div(id="chart_no_charging_div")
+        div(id="chart_with_charging_div")
+    div.panel.panel-default
+      div.panel-heading
+        h3 Last #[span(id="prev_days_span")] days analysis
+      div.panel-body
+        div(id="latest_days_div")
+  div(id="spinner")
