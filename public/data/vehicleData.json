@@ -1,0 +1,53 @@
+[
+  {
+    "title" : "Tesla Model S",
+    "key" : "model-s",
+    "capacity_kwh" : 80,
+    "economy_mpkwh" : 3.675
+  }, {
+    "title" : "Tesla Model X",
+    "key" : "model-x",
+    "capacity_kwh" : 82.5,
+    "economy_mpkwh" : 3.115
+  }, {
+    "title" : "Tesla Model 3",
+    "key" : "model-3",
+    "capacity_kwh" : 61,
+    "economy_mpkwh" : 3.525
+  }, {
+    "title" : "BMW i3",
+    "key" : "i3",
+    "capacity_kwh" : 27.5,
+    "economy_mpkwh" : 4.15
+  }, {
+    "title" : "BMW i8",
+    "key" : "i8",
+    "capacity_kwh" : 7.1,
+    "economy_mpkwh" : 2.113 
+  }, {
+    "title" : "Nissan Leaf",
+    "key" : "leaf",
+    "capacity_kwh" : 30,
+    "economy_mpkwh" : 3.567
+  }, {
+    "title" : "Fiat 500e",
+    "key" : "500e",
+    "capacity_kwh" : 24,
+    "economy_mpkwh" : 3.5
+  }, {
+    "title" : "Standard E-Bike",
+    "key" : "bike-40",
+    "capacity_kwh" : 0.25,
+    "economy_mpkwh" : 40
+  }, {
+    "title" : "E-Bike Long Range",
+    "key" : "bike",
+    "capacity_kwh" : 1,
+    "economy_mpkwh" : 40
+  }, {
+    "title" : "E-Scooter",
+    "key" : "scooter",
+    "capacity_kwh" : 0.25,
+    "economy_mpkwh" : 35
+  }
+]
