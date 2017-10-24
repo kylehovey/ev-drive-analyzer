@@ -6,7 +6,7 @@
 public/js/app/*
 
 # Compiled SASS
-public/js/style/*.css
+public/style/*.css
 
 # Logs
 logs
