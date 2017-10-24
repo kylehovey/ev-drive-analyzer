@@ -1,28 +1,5 @@
 extends layout
 
-include ../mixins/vehicleDataEntry
-include ../mixins/dataSummaryTable
-include ../mixins/fileInput
-
-append jumbotron
-  p Download your location history in JSON format from #[a(href="https://takeout.google.com/settings/takeout/custom/location_history?hl=en&gl=US&expflags") Google Takeout]
-  p Upload your LocationHistory.json file:
-
-  +fileInput("")
-
-  br
-
-  +vehicleDataEntry
-
-  div
-    a(href="two-person") Two-person Vehicle Recommender
-
-append content
-  +dataSummaryTable
-
 append userScripts
-  script(src="/js/app/global/latest-days.js")
-  script(src="/js/app/global/index.js")
-
   script(src="/js/app/index/app.js")
   script(src="/js/app/index/main.js")

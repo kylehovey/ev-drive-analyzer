@@ -1,3 +1,5 @@
 class App {
-  constructor() {}
+  constructor() {
+    this.example = new Example;
+  }
 };
