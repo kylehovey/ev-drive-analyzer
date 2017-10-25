@@ -6,9 +6,18 @@ html
 
     title=title
 
-    link(rel='stylesheet', href='/style/global.css')
-    link(rel='stylesheet', href='/style/external/bootstrap.min.css')
-    link(rel='stylesheet', href='/style/external/sweetalert.min.css')
+    block externalFonts
+    link(
+      rel="stylesheet",
+      href="https://fonts.googleapis.com/css?family=Comfortaa|Varela+Round"
+    )
+
+    block externalStyle
+    link(rel="stylesheet", href="/style/external/bootstrap.min.css")
+    link(rel="stylesheet", href="/style/external/jquery.fullpage.min.css")
+    link(rel="stylesheet", href="/style/external/sweetalert.min.css")
+
+    block pageStyle
   body
     block content
 
@@ -16,6 +25,7 @@ html
       script(src="/js/external/polyfill.min.js")
       script(src="/js/external/lodash.min.js")
       script(src="/js/external/jquery.min.js")
+      script(src="/js/external/jquery.fullpage.min.js")
       script(src="/js/external/bootstrap.min.js")
       script(src="/js/external/sweetalert.min.js")
 

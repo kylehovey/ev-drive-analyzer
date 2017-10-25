@@ -1,5 +1,28 @@
 extends layout
 
+append pageStyle
+  link(rel="stylesheet", href="/style/index.css")
+
+append content
+  div.fullpage(id="fullpage")
+    div.section.section-one
+      div.container
+        div.row
+          div.col-md-12
+            h1.text-center See if owning an electric vehicle is right for you
+            hr
+        div.row
+          div.col-md-12
+            p In order to determine how well an Electric Vehicle will suit your lifestyle, this tool requires your location history provided from Google Takeout. The data processing runs completely in-browser, so none of your data is stored on our servers. This project is also open source, so the code that is running on your browser can be viewed on GitHub.
+        div.row
+          div.col-md-12.text-center
+            button.btn.btn-primary(type="button", id="upload-json") Upload Location History
+    div.section.section-two
+      div.container
+        div.row
+          div.col-12
+            h1.text-center Page Two
+
 append userScripts
   script(src="/js/app/pages/index/app.js")
   script(src="/js/app/pages/index/main.js")

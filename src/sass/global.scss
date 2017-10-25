@@ -1,0 +1,38 @@
+/* Main Color Scheme */
+$color-1: rgb(0, 145, 186);
+$color-2: rgb(191, 98, 72);
+$color-3: rgb(0, 186, 186);
+$color-4: rgb(232, 170, 25);
+$color-5: rgb(158, 99, 183);
+
+/* Element Colors */
+$hr-color: white;
+
+/* Typography */
+$paragraph-text-color: rgba(10, 10, 10, 0.7);
+$paragraph-text-font: 'Comfortaa', cursive;
+
+$title-text-color: rgba(30, 30, 30, 0.7);
+$title-text-font: 'Varela Round', sans-serif;
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: antialiased;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  color: $title-text-color;
+  font-family: $title-text-font;
+  text-transform: capitalize;
+}
+
+p,span {
+  color: $paragraph-text-color;
+  font-family: $paragraph-text-font;
+}
+
+hr {
+  height: 1px; 
+  width: 30%;
+  color: $hr-color !important;
+}
