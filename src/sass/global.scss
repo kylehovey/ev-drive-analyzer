@@ -52,3 +52,11 @@ input[type=file] {
     background-color: $lighter;
   }
 }
+
+/* ===== Font Awesome Modification ===== */
+.fa {
+  &.wide-kerning {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
