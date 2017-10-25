@@ -46,6 +46,10 @@ input[type=file] {
   display: none;
 }
 
+select {
+  height: 40px;
+}
+
 a {
   color: $link-color;
 
@@ -62,6 +66,11 @@ a {
     color: $paragraph-text-color;
     background-color: $lighter;
   }
+}
+
+.form-control {
+  border: none;
+  background-color: $lighter;
 }
 
 /* ===== Font Awesome Modification ===== */

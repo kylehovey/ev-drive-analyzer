@@ -2,14 +2,30 @@ $(() => {
   // Create the application
   window.app = new App();
 
-  // Initialize data
-  window.app.init();
-
   // Initialize fullpage
   $("#fullpage").fullpage();
 
+  Promise
+    .resolve($.getJSON("/data/vehicleData.json"))
+    .then(vehicles => {
+      const vehicleSelect = $("#vehicle-select");
+
+      // Add vehicles to dealership
+      vehicles
+        .map(opts => new Vehicle(opts))
+        .forEach(vehicle => {
+          // Add vehicle to dealership
+          app.dealership.addVehicle(vehicle);
+
+          // Add vehicle to select menu
+          vehicleSelect.append(
+            `<option value=${vehicle.key}>${vehicle.title}</option>`
+          );
+        });
+    });
+
   // Disable scrolling
-  $.fn.fullpage.setAllowScrolling(false, "down, up");
+  //$.fn.fullpage.setAllowScrolling(false, "down, up");
 
   // ===== Listeners =====
   $("#upload-json").on("click", (e) => {
@@ -52,5 +68,10 @@ $(() => {
 
     // Read the file
     reader.readAsText(file);
+  });
+
+  $("#vehicle-select-accept").on("click", (e) => {
+    $(e.target).text("Nice Choice!");
+    console.log(app.dealership.getVehicle($("#vehicle-select").val()));
   });
 });

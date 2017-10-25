@@ -5,14 +5,12 @@ append pageStyle
 
 append content
   div.fullpage(id="fullpage")
-    div.section.section-one
+    jiv.section.section-one
       div.container
         div.row
           div.col-md-12
             h1.text-center
-              i.fa.wide-kerning.fa-car
               i.fa.wide-kerning.fa-bolt
-              i.fa.wide-kerning.fa-bicycle
             h1.text-center See how an electric vehicle can benefit you
             hr
         div.row
@@ -27,11 +25,37 @@ append content
             ) Upload Location History
             input(type="file", id="upload-json-input")
             h2.hidden(id="upload-done") Done!
+
     div.section.section-two
       div.container
         div.row
-          div.col-12
-            h1.text-center Page Two
+          div.col-md-12
+            h1.text-center
+              i.fa.wide-kerning.fa-car
+            h1.text-center Choose your vehicle!
+            hr
+
+        div.row
+          div.col-md-12
+            p Determining the impact of an electric vehicle on your life depends on what you choose as your new stylish mode of transportation. Which electric vehicle would you like to have in your life?
+
+        div.row
+          div.col-md-2.col-md-offset-3.text-center
+            div.form-group
+              select.form-control.input-large(id="vehicle-select")
+          div.col-md-2
+            ul.fa-ul
+              li #[i.fa-li.fa.fa-battery-full] Battery Capacity
+              li #[i.fa-li.fa.fa-tachometer] Energy Economy
+              li #[i.fa-li.fa.fa-road] Range
+              li #[i.fa-li.fa.fa-money] Cost
+
+          div.col-md-2
+            button.btn.btn-primary.btn-lg(
+              type="button",
+              id="vehicle-select-accept",
+              data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Running Analysis"
+            ) Use Selected
 
 append userScripts
   script(src="/js/app/pages/index/app.js")
