@@ -38,10 +38,16 @@ $(() => {
       await upload.fadeOut().promise();
 
       // Done!
-      $("#upload-done")
+      await $("#upload-done")
         .hide()
         .removeClass("hidden")
-        .fadeIn();
+        .fadeIn()
+        .promise();
+
+      // Scroll down
+      setTimeout(() => {
+        $.fn.fullpage.moveSectionDown();
+      }, 500);
     }
 
     // Read the file
