@@ -16,7 +16,13 @@ append content
             p In order to determine how well an Electric Vehicle will suit your lifestyle, this tool requires your location history provided from Google Takeout. The data processing runs completely in-browser, so none of your data is stored on our servers. This project is also open source, so the code that is running on your browser can be viewed on GitHub.
         div.row
           div.col-md-12.text-center
-            button.btn.btn-primary(type="button", id="upload-json") Upload Location History
+            button.btn.btn-primary.btn-lg(
+              type="button",
+              id="upload-json",
+              data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Processing File"
+            ) Upload Location History
+            input(type="file", id="upload-json-input")
+            h2.hidden(id="upload-done") Done!
     div.section.section-two
       div.container
         div.row

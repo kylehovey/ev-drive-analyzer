@@ -8,6 +8,9 @@ $color-5: rgb(158, 99, 183);
 /* Element Colors */
 $hr-color: white;
 
+/* Lighten from background color */
+$lighter: rgba(255, 255, 255, 0.3);
+
 /* Typography */
 $paragraph-text-color: rgba(10, 10, 10, 0.7);
 $paragraph-text-font: 'Comfortaa', cursive;
@@ -35,4 +38,17 @@ hr {
   height: 1px; 
   width: 30%;
   color: $hr-color !important;
+}
+
+input[type=file] {
+  display: none;
+}
+
+/* ===== Bootstrap Modification ===== */
+.btn {
+  &.btn-primary {
+    border: none;
+    color: $paragraph-text-color;
+    background-color: $lighter;
+  }
 }

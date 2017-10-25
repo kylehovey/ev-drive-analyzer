@@ -1,7 +1,9 @@
 @import "./global.scss";
 
-.section-one   { background-color: $color-1; }
-.section-two   { background-color: $color-2; }
-.section-three { background-color: $color-3; }
-.section-four  { background-color: $color-4; }
-.section-five  { background-color: $color-5; }
+.section {
+  &.section-one   { background-color: $color-1; }
+  &.section-two   { background-color: $color-2; }
+  &.section-three { background-color: $color-3; }
+  &.section-four  { background-color: $color-4; }
+  &.section-five  { background-color: $color-5; }
+}
