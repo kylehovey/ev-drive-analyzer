@@ -7,6 +7,7 @@ $color-5: rgb(158, 99, 183);
 
 /* Element Colors */
 $hr-color: white;
+$link-color: limegreen;
 
 /* Lighten from background color */
 $lighter: rgba(255, 255, 255, 0.3);
@@ -43,6 +44,15 @@ hr {
 
 input[type=file] {
   display: none;
+}
+
+a {
+  color: $link-color;
+
+  &:hover, &:active {
+    text-decoration: none;
+    color: $lighter;
+  }
 }
 
 /* ===== Bootstrap Modification ===== */
