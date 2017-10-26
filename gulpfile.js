@@ -4,6 +4,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const sass = require('gulp-sass');
+const esdoc = require('gulp-esdoc');
 
 // Configuration
 const compileTasks = require('config.json')('./config/gulp.json').tasks;
@@ -12,7 +13,8 @@ const compileTasks = require('config.json')('./config/gulp.json').tasks;
 // (function names are the same name as the handler keys)
 const handlers = {
   compileJS,
-  compileCSS
+  compileCSS,
+  compileDocs
 };
 
 /**
@@ -42,7 +44,18 @@ function compileCSS(source, destination) {
   return () => gulp.src(source)
     .pipe(changed(destination))
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest(destination))
+    .pipe(gulp.dest(destination));
+}
+
+/**
+ * Compile documentation for client-side code
+ * @param {String} source Source of files (supports globbing)
+ * @param {String} destination Destination of files (supports globbing)
+ * @return {Function}
+ */
+function compileDocs(source, destination) {
+  return () => gulp.src(source)
+    .pipe(esdoc({ destination }));
 }
 
 // Find enabled tasks

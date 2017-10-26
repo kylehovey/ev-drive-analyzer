@@ -24,11 +24,7 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-changed": "^3.1.0",
+    "gulp-esdoc": "^0.4.1",
     "gulp-sass": "^3.1.0"
-  },
-  "esdoc" : {
-    "source" : "./src/js",
-    "destination" : "./docs",
-    "plugins" : [ {"name": "esdoc-standard-plugin"} ]
   }
 }

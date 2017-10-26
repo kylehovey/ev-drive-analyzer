@@ -15,6 +15,14 @@
         "dest" : "./public/style",
         "enabled" : true
       }
+    ],
+    "compileDocs" : [
+      {
+        "name" : "app-documentation",
+        "src" : "./src/js/",
+        "dest" : "./docs",
+        "enabled" : true
+      }
     ]
   }
 }
