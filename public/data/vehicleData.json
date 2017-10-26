@@ -5,69 +5,69 @@
     "capacity" : 80,
     "economy" : 3.675,
     "type" : "car",
-    "cost" : 30000
+    "cost" : 68000
   }, {
     "title" : "Tesla Model X",
     "key" : "model-x",
     "capacity" : 82.5,
     "economy" : 3.115,
     "type" : "car",
-    "cost" : 30000
+    "cost" : 79500
   }, {
     "title" : "Tesla Model 3",
     "key" : "model-3",
     "capacity" : 61,
     "economy" : 3.525,
     "type" : "car",
-    "cost" : 30000
+    "cost" : 35000
   }, {
     "title" : "BMW i3",
     "key" : "i3",
     "capacity" : 27.5,
     "economy" : 4.15,
     "type" : "car",
-    "cost" : 30000
+    "cost" : 42400
   }, {
     "title" : "BMW i8",
     "key" : "i8",
     "capacity" : 7.1,
     "economy" : 2.113 ,
     "type" : "car",
-    "cost" : 30000
+    "cost" : 143400
   }, {
     "title" : "Nissan Leaf",
     "key" : "leaf",
     "capacity" : 30,
     "economy" : 3.567,
     "type" : "car",
-    "cost" : 30000
+    "cost" : 30680
   }, {
     "title" : "Fiat 500e",
     "key" : "500e",
     "capacity" : 24,
     "economy" : 3.5,
     "type" : "car",
-    "cost" : 30000
+    "cost" : 32995
   }, {
     "title" : "Standard E-Bike",
     "key" : "bike-40",
     "capacity" : 0.25,
     "economy" : 40,
     "type" : "bike",
-    "cost" : 30000
+    "cost" : 500
   }, {
     "title" : "E-Bike Long Range",
     "key" : "bike",
     "capacity" : 1,
     "economy" : 40,
     "type" : "bike",
-    "cost" : 30000
+    "cost" : 2000
   }, {
     "title" : "E-Scooter",
     "key" : "scooter",
     "capacity" : 0.25,
     "economy" : 35,
     "type" : "scooter",
-    "cost" : 30000
+    "cost" : 2000
   }
 ]
