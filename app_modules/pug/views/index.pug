@@ -36,19 +36,21 @@ append content
             hr
 
         div.row
-          div.col-md-12
+          div.col-md-6
             p Determining the impact of an electric vehicle on your life depends on what you choose as your new stylish mode of transportation. Which electric vehicle would you like to have in your life?
-
-        div.row
-          div.col-md-2.col-md-offset-3.text-center
+          div.col-md-6
             div.form-group
               select.form-control.input-large(id="vehicle-select")
           div.col-md-2
             ul.fa-ul
-              li #[i.fa-li.fa.fa-battery-full] Battery Capacity
-              li #[i.fa-li.fa.fa-tachometer] Energy Economy
-              li #[i.fa-li.fa.fa-road] Range
-              li #[i.fa-li.fa.fa-money] Cost
+              li #[i.fa-li.fa.fa-battery-full]
+                span(id="stats-capacity") Battery Capacity
+              li #[i.fa-li.fa.fa-tachometer]
+                span(id="stats-economy") Energy Economy
+              li #[i.fa-li.fa.fa-road]
+                span(id="stats-range") Range
+              li #[i.fa-li.fa.fa-money]
+                span(id="stats-cost") Cost
 
           div.col-md-2
             button.btn.btn-primary.btn-lg(

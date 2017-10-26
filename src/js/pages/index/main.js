@@ -1,4 +1,13 @@
 $(() => {
+  /* ===== Function Definition ===== */
+  function updateVehicleStats(vehicle) {
+    $("#stats-capacity").text(`${vehicle.capacity} kWh`);
+    $("#stats-economy").text(`${vehicle.economy} miles / kWh`);
+    $("#stats-range").text(`${Math.round(vehicle.getRange())} miles`);
+    $("#stats-cost").text(`$${vehicle.cost.toLocaleString()}`);
+  }
+
+  /* ===== Initialization Section ===== */
   // Create the application
   window.app = new App();
 
@@ -10,7 +19,6 @@ $(() => {
     .then(vehicles => {
       const vehicleSelect = $("#vehicle-select");
 
-      // Add vehicles to dealership
       vehicles
         .map(opts => new Vehicle(opts))
         .forEach(vehicle => {
@@ -22,6 +30,10 @@ $(() => {
             `<option value=${vehicle.key}>${vehicle.title}</option>`
           );
         });
+
+      // Update stats on vehicle select
+      const [ firstVehicle ] = app.dealership.getVehicles();
+      updateVehicleStats(firstVehicle);
     });
 
   // Disable scrolling
@@ -73,5 +85,10 @@ $(() => {
   $("#vehicle-select-accept").on("click", (e) => {
     $(e.target).text("Nice Choice!");
     console.log(app.dealership.getVehicle($("#vehicle-select").val()));
+  });
+
+  $("#vehicle-select").on("change", (e) => {
+    const vehicle = app.dealership.getVehicle($(e.target).val());
+    updateVehicleStats(vehicle);
   });
 });
