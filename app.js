@@ -16,7 +16,7 @@ const notFoundHandler = require('./app_modules/express/middlewares/404.js');
 const errorHandler = require('./app_modules/express/middlewares/error.js');
 
 // Instantiate application
-var app = express();
+const app = express();
 
 // View engine setup
 app.set('views', path.join(__dirname, 'app_modules/pug/views'));
