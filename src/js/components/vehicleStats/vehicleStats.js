@@ -35,6 +35,8 @@ class VehicleStats {
         </li>
       </ul>
     `);
+
+    this._render();
   }
 
   /**
