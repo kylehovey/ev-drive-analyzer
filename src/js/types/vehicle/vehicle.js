@@ -5,7 +5,9 @@ class Vehicle {
         title : "Default",
         key : "default",
         capacity : 10,
-        economy : 3
+        economy : 3,
+        type : "car",
+        cost : 30000
       }, opts);
   }
 

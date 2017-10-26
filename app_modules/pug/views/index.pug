@@ -41,17 +41,7 @@ append content
           div.col-md-6
             div.form-group
               select.form-control.input-large(id="vehicle-select")
-          div.col-md-2
-            ul.fa-ul
-              li #[i.fa-li.fa.fa-battery-full]
-                span(id="stats-capacity") Battery Capacity
-              li #[i.fa-li.fa.fa-tachometer]
-                span(id="stats-economy") Energy Economy
-              li #[i.fa-li.fa.fa-road]
-                span(id="stats-range") Range
-              li #[i.fa-li.fa.fa-money]
-                span(id="stats-cost") Cost
-
+          div.col-md-2(id="vehicle-stats")
           div.col-md-2
             button.btn.btn-primary.btn-lg(
               type="button",

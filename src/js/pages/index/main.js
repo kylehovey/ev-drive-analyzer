@@ -1,12 +1,4 @@
 $(() => {
-  /* ===== Function Definition ===== */
-  function updateVehicleStats(vehicle) {
-    $("#stats-capacity").text(`${vehicle.capacity} kWh`);
-    $("#stats-economy").text(`${vehicle.economy} miles / kWh`);
-    $("#stats-range").text(`${Math.round(vehicle.getRange())} miles`);
-    $("#stats-cost").text(`$${vehicle.cost.toLocaleString()}`);
-  }
-
   /* ===== Initialization Section ===== */
   // Create the application
   window.app = new App();
@@ -33,7 +25,8 @@ $(() => {
 
       // Update stats on vehicle select
       const [ firstVehicle ] = app.dealership.getVehicles();
-      updateVehicleStats(firstVehicle);
+      app.vehicleStats.setVehicle(firstVehicle);
+      app.analyser.setVehicle(firstVehicle);
     });
 
   // Disable scrolling
@@ -84,11 +77,11 @@ $(() => {
 
   $("#vehicle-select-accept").on("click", (e) => {
     $(e.target).text("Nice Choice!");
-    console.log(app.dealership.getVehicle($("#vehicle-select").val()));
   });
 
   $("#vehicle-select").on("change", (e) => {
     const vehicle = app.dealership.getVehicle($(e.target).val());
-    updateVehicleStats(vehicle);
+    app.vehicleStats.setVehicle(vehicle);
+    app.analyser.setVehicle(vehicle);
   });
 });
