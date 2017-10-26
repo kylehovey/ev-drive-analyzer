@@ -1,5 +1,14 @@
-class Dealership {
+/**
+ * A collection of vehicles
+ */
+export class Dealership {
+  /**
+   * Initialize stateful data
+   */
   constructor() {
+    /**
+     * @type {Object}
+     */
     this._vehicles = {};
   }
 

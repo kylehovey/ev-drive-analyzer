@@ -1,4 +1,16 @@
-class Vehicle {
+/**
+ * A general vehicle type
+ */
+export class Vehicle {
+  /**
+   * Create the vehicle
+   * @param {String} opts.title Title and/or description of vehicle
+   * @param {String} opts.key Identifier assigned to vehicle
+   * @param {Number} opts.capacity Capacity of vehicle battery in kWh
+   * @param {Number} opts.economy Economy of vehicle in miles / kWh
+   * @param {String} opts.type Type of car (can be [car,bike,scooter])
+   * @param {Number} opts.cost Cost of car in USD
+   */
   constructor(opts) {
     // Set defaults
     Object.assign(this, {

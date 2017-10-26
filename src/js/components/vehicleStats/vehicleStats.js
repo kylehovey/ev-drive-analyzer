@@ -1,9 +1,15 @@
-class VehicleStats {
+/**
+ * View component that shows vehicle statistics
+ */
+export class VehicleStats {
   /**
    * Construct a stats view for vehicles
    * @param {String} options.id Id of element to place stats in
    */
   constructor(options) {
+    /**
+     * @type {Object}
+     */
     this._opts = Object.assign({
       id : null,
       vehicle : new Vehicle
@@ -13,6 +19,9 @@ class VehicleStats {
       throw new Error("Must provide id for stats.");
     }
 
+    /**
+     * @type {Object}
+     */
     this._container = $(`#${this._opts.id}`);
 
     this._container.append(`

@@ -1,3 +1,6 @@
+# Documentation
+docs/*
+
 # Vim Swap Files
 *.swp
 *.swo

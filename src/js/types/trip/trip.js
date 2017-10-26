@@ -1,7 +1,15 @@
-class Trip {
+/**
+ * A trip composes many locations into a path
+ */
+export class Trip {
+  /**
+   * Start off with trip with no points
+   */
   constructor() {
+    /**
+     * @type {Array}
+     */
     this._history = [];
-    this._path = null;
   }
 
   /**

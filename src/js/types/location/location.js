@@ -1,4 +1,7 @@
-class Location {
+/**
+ * Custom location type used in data analysis
+ */
+export class Location {
   /**
    * Construct a location instance
    * @param {Object} geoJSON GeoJSON location object
