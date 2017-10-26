@@ -1,7 +1,7 @@
 /**
  * A general vehicle type
  */
-export class Vehicle {
+class Vehicle {
   /**
    * Create the vehicle
    * @param {String} opts.title Title and/or description of vehicle

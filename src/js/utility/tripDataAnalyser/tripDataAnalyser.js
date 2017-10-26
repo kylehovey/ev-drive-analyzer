@@ -1,7 +1,7 @@
 /**
  * Utility class for analyzing Google Takeout data
  */
-export class TripDataAnalyser {
+class TripDataAnalyser {
   /**
    * Instantiate the analyser
    * @param {Vehicle} opts.vehicle Vehicle to use for analysis

@@ -1,7 +1,7 @@
 /**
  * View component that shows vehicle statistics
  */
-export class VehicleStats {
+class VehicleStats {
   /**
    * Construct a stats view for vehicles
    * @param {String} options.id Id of element to place stats in

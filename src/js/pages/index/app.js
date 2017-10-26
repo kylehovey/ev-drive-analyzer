@@ -1,7 +1,7 @@
 /**
  * Application for home page
  */
-export class App {
+class App {
   /**
    * Initialize applicaiton components
    */

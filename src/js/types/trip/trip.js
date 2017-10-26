@@ -1,7 +1,7 @@
 /**
  * A trip composes many locations into a path
  */
-export class Trip {
+class Trip {
   /**
    * Start off with trip with no points
    */

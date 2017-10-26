@@ -1,7 +1,7 @@
 /**
  * A collection of vehicles
  */
-export class Dealership {
+class Dealership {
   /**
    * Initialize stateful data
    */

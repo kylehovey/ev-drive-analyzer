@@ -21,7 +21,7 @@
         "name" : "app-documentation",
         "src" : "./src/js/",
         "dest" : "./docs",
-        "enabled" : true
+        "enabled" : false
       }
     ]
   }
