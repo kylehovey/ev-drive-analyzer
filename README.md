@@ -17,3 +17,10 @@ This utility aims to be an abstract dashboard to generate compelling arguments a
     - Most data will be fleet data
   - Analysis Types:
     - TBD
+
+## Potential Optimizations:
+- Memoization
+  - Trip analysis methods (reset on new data)
+  - Any and all API calls
+- Extra Work
+  - Don't filter trips that are too small (save for later)

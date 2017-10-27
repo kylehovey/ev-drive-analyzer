@@ -61,7 +61,7 @@ class TripDataAnalyser {
    */
   _computeTrips(days = 90, maxDistDelta = 4, maxTDelta = 1, minTripDist = 0.5) {
     // Get data from the specified time period
-    const dateCutoff = +new Date() - days * 86400000;
+    const dateCutoff = +new Date - days * 86400000;
 
     const rawData = this._opts.takeoutData
       .filter(loc => +loc.timestampMs > dateCutoff)
