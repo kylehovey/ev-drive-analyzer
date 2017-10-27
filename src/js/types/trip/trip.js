@@ -43,4 +43,13 @@ class Trip {
     const [ last ] = this._history.slice(-1);
     return last.getTime() - first.getTime();
   }
+
+  /**
+   * Find the average speed of the trip
+   * @param {String} type Type of measurement
+   * @return {Number}
+   */
+  getAverageSpeed(type = 'miles') {
+    return this.getDistance(type) / this.getDuration();
+  }
 }
