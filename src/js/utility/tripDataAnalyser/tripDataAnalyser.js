@@ -75,7 +75,7 @@ class TripDataAnalyser {
     rawData.forEach(curLoc => {
       if (
         turf.distance(lastLoc.coords, curLoc.coords, 'miles') > maxDistDelta
-        && (curLoc.getTime() - lastLoc.getTime() > minTripDist * 3600000)
+        || (curLoc.getTime() - lastLoc.getTime() > minTripDist * 3600000)
       ) {
         // New trip
         curTrip = new Trip;
