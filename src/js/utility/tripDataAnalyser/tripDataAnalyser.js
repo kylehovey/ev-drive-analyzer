@@ -72,10 +72,11 @@ class TripDataAnalyser {
     let [ curTrip ] = this._trips;
     let lastLoc = rawData.shift();
 
+    const maxTDeltaMs = maxTDelta * 3600000;
     rawData.forEach(curLoc => {
       if (
         turf.distance(lastLoc.coords, curLoc.coords, 'miles') > maxDistDelta
-        || (curLoc.getTime() - lastLoc.getTime() > minTripDist * 3600000)
+        || (curLoc.getTime() - lastLoc.getTime() > maxTDeltaMs)
       ) {
         // New trip
         curTrip = new Trip;
