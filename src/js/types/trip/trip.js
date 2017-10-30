@@ -27,8 +27,7 @@ class Trip {
    */
   getDistance(type = "miles") {
     if (this._history.length > 1) {
-      const path = turf.lineString(this._history.map(loc => loc.toArray()));
-      return turf.lineDistance(path, type);
+      return turf.lineDistance(this.toLineString(), type);
     } else {
       return 0;
     }
@@ -55,16 +54,17 @@ class Trip {
 
   /**
    * Convert to GeoJSON LineString
-   * @return {Object}
+   * @return {LineString}
    */
   toLineString() {
-    return {
-      type : "Feature",
-      properties : {},
-      geometry : {
-        type : "LineString",
-        coordinates : this._history.map(loc => loc.toArray())
-      }
-    };
+    return turf.lineString(this._history.map(loc => loc.toArray()));
+  }
+
+  /**
+   * Convert to GeoJSON FeatureCollection
+   * @return {FeatureCollection}
+   */
+  toFeatureCollection() {
+    return turf.featureCollection(this._history.map(loc => loc.toTurfPoint()));
   }
 }

@@ -25,7 +25,7 @@ class Location {
    * @return {turf.point}
    */
   toTurfPoint() {
-    return turf.point(this.location);
+    return turf.point(this.toArray());
   }
 
   /**

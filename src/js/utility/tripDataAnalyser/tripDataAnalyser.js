@@ -41,9 +41,43 @@ class TripDataAnalyser {
 
   /**
    * Get trip data
+   * @return {Array}
    */
   getTrips() {
     return this._trips;
+  }
+
+  /**
+   * Get trip data as a feature collection
+   * @return {FeatureCollection}
+   */
+  getTripsCollection() {
+    return turf.featureCollection(
+      this.getTrips().map(trip => trip.toLineString())
+    );
+  }
+
+  /**
+   * Get the endpoints of each trip (start/stop)
+   * @return {Array}
+   */
+  getEndpoints() {
+    return this.getTrips()
+      .map(trip => [
+        trip._history[0],
+        trip._history[trip._history.length - 1]
+      ])
+      .reduce((acc, pair) => acc.concat(pair), []);
+  }
+
+  /**
+   * Get the endpoints as a feature collection
+   * @return {FeatureCollection}
+   */
+  getEndpointsCollection() {
+    return turf.featureCollection(
+      this.getEndpoints().map(loc => loc.toTurfPoint())
+    );
   }
 
   /**
@@ -61,7 +95,7 @@ class TripDataAnalyser {
    *  @param {Number} minDistDelta Minimum decimal degree difference to warrant
    *    considering a pair of points as being different locations geographically
    */
-  _computeTrips(days = 120, maxTDelta = 0.1, maxDistDelta = 5, minTripDist = 0.5, minDistDelta = 0.00001) {
+  _computeTrips(days = 120, maxTDelta = 0.1, maxDistDelta = 5, minTripDist = 0.5, minDistDelta = 0.000001) {
     // Get data from the specified time period
     const dateCutoff = +new Date - days * 86400000;
 
@@ -110,18 +144,5 @@ class TripDataAnalyser {
 
     // Filter out any trips that did not get enough data
     this._trips = this._trips.filter(trip => trip.getDistance() > minTripDist);
-  }
-
-  /**
-   * Get the endpoints of each trip (start/stop)
-   * @return {Array}
-   */
-  getEndpoints() {
-    return this.getTrips()
-      .map(trip => [
-        trip._history[0],
-        trip._history[trip._history.length - 1]
-      ])
-      .reduce((acc, pair) => acc.concat(pair), []);
   }
 }

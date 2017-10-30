@@ -32,14 +32,12 @@ class App {
      */
     this.map = new mapboxgl.Map({
       container : 'map',
-      style : 'mapbox://styles/mapbox/streets-v9',
+      style : 'mapbox://styles/mapbox/light-v9',
       center: [-111.801, 41.746],
-      zoom: 10
+      zoom: 9
     });
 
     // Config
-    this.map
-      .addControl(new mapboxgl.NavigationControl())
-      .scrollZoom.disable();
+    this.map.addControl(new mapboxgl.NavigationControl());
   }
 };

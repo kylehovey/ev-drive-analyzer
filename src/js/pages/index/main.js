@@ -61,11 +61,31 @@ $(() => {
         type : "line",
         source : {
           type : "geojson",
-          data : {
-            type : "FeatureCollection",
-            features : app.analyser.getTrips().map(trip => trip.toLineString())
-          }
+          data : app.analyser.getTripsCollection()
+        },
+        layout : {
+          "line-join" : "round",
+          "line-cap" : "round"
+        },
+        paint : {
+          "line-color" : "rgba(183, 42, 111, 0.5)",
+          "line-width" : 1
         }
+      });
+
+      // Add endpoints to map
+      app.map.addLayer({
+        id : "endPoints",
+        type : "symbol",
+        source : {
+          type : "geojson",
+          data : app.analyser.getEndpointsCollection()
+        },
+        layout: {
+          "icon-image": "circle-15",
+          "icon-allow-overlap" : true
+        },
+        paint: { }
       });
 
       // Reset loader view
