@@ -49,6 +49,18 @@ append content
               data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Running Analysis"
             ) Use Selected
 
+    div.section.section-three
+      div.container
+        div.row
+          div.col-md-12
+            h1.text-center
+              i.fa.wide-kerning.fa-bar-chart
+            h1.text-center Results
+            hr
+        div.row
+          div.col-md-12
+            div(id="map")
+
 append userScripts
   script(src="/js/app/pages/index/app.js")
   script(src="/js/app/pages/index/main.js")
