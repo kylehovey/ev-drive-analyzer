@@ -61,7 +61,7 @@ class TripDataAnalyser {
    *  @param {Number} minDistDelta Minimum decimal degree difference to warrant
    *    considering a pair of points as being different locations geographically
    */
-  _computeTrips(days = 120, maxTDelta = 0.1, maxDistDelta = 2, minTripDist = 0.5, minDistDelta = 0.00001) {
+  _computeTrips(days = 120, maxTDelta = 0.1, maxDistDelta = 5, minTripDist = 0.5, minDistDelta = 0.00001) {
     // Get data from the specified time period
     const dateCutoff = +new Date - days * 86400000;
 
