@@ -52,4 +52,19 @@ class Trip {
   getAverageSpeed(type = 'miles') {
     return this.getDistance(type) / this.getDuration();
   }
+
+  /**
+   * Convert to GeoJSON LineString
+   * @return {Object}
+   */
+  toLineString() {
+    return {
+      type : "Feature",
+      properties : {},
+      geometry : {
+        type : "LineString",
+        coordinates : this._history.map(loc => loc.toArray())
+      }
+    };
+  }
 }

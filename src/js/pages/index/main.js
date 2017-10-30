@@ -30,7 +30,7 @@ $(() => {
     });
 
   // Disable scrolling
-  //$.fn.fullpage.setAllowScrolling(false, "down, up");
+  $.fn.fullpage.setAllowScrolling(false, "down, up");
 
   // ===== Listeners =====
   $("#upload-json").on("click", (e) => {
@@ -55,6 +55,19 @@ $(() => {
       // Set data of trip analyser
       app.analyser.setData(data);
 
+      // Add trip data to map
+      app.map.addLayer({
+        id : "trips",
+        type : "line",
+        source : {
+          type : "geojson",
+          data : {
+            type : "FeatureCollection",
+            features : app.analyser.getTrips().map(trip => trip.toLineString())
+          }
+        }
+      });
+
       // Reset loader view
       await upload.fadeOut().promise();
 
@@ -77,6 +90,7 @@ $(() => {
 
   $("#vehicle-select-accept").on("click", (e) => {
     $(e.target).text("Nice Choice!");
+    $.fn.fullpage.moveSectionDown();
   });
 
   $("#vehicle-select").on("change", (e) => {

@@ -26,14 +26,20 @@ class App {
     // Mapbox Config
     mapboxgl.accessToken =
       'pk.eyJ1IjoidXBlbCIsImEiOiJjajllZ29reTUyYTJoMndsc3ZtdGg2NXpsIn0.Y6sKlsUA9ZIm8rHfklQPaQ';
+
+    /**
+     * @type {mapboxgl.Map}
+     */
     this.map = new mapboxgl.Map({
       container : 'map',
-      style : 'mapbox://styles/mapbox/light-v9',
+      style : 'mapbox://styles/mapbox/streets-v9',
       center: [-111.801, 41.746],
       zoom: 10
     });
 
-    this.map.on('load', () => {
-    });
+    // Config
+    this.map
+      .addControl(new mapboxgl.NavigationControl())
+      .scrollZoom.disable();
   }
 };

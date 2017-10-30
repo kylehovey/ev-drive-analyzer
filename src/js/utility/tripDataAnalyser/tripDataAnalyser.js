@@ -105,4 +105,17 @@ class TripDataAnalyser {
     // Filter out any trips that did not get enough data
     this._trips = this._trips.filter(trip => trip.getDistance() > minTripDist);
   }
+
+  /**
+   * Get the endpoints of each trip (start/stop)
+   * @return {Array}
+   */
+  getEndpoints() {
+    return this.getTrips()
+      .map(trip => [
+        trip._history[0],
+        trip._history[trip._history.length - 1]
+      ])
+      .reduce((acc, pair) => acc.concat(pair), []);
+  }
 }

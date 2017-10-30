@@ -37,6 +37,26 @@ class Location {
   }
 
   /**
+   * Convert location to GeoJSON
+   * @param {String} name Textual name of location
+   * @param {String} address Textual address of location
+   * @return {Object}
+   */
+  toGeoJSON(name = "", address = "") {
+    return {
+      type : 'Feature',
+      properties : {
+        Name : name,
+        Address : address 
+      },
+      geometry : {
+        type : 'Point', 
+        coordinates : this.toArray()
+      }
+    };
+  }
+
+  /**
    * Get time at location
    * @return {Date}
    */
