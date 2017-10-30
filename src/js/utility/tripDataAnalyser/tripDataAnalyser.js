@@ -51,14 +51,17 @@ class TripDataAnalyser {
    *  - A trip is defined as an ordered set of {lat,lon,elev,date} locations
    *    such that the adjacent pairwise time difference between the former
    *    and latter location does not exceed some epsilon deemed unreasonable
-   *    for a regular sampling of vehicular travel data.
+   *    for a regular sampling of vehicular travel data. An equivalent epsilon
+   *    is also considered for distance to prevent spurious data.
    *  @param {Number} days Number of days to go back from now in analysis
    *  @param {Number} maxTDelta Temporal epsilon mentioned in definition (hours)
+   *  @param {Number} maxDistDelta Maximum distance between any
+   *    two locations (miles)
    *  @param {Number} minTripDist Minimum distance in miles for trip results
    *  @param {Number} minDistDelta Minimum decimal degree difference to warrant
    *    considering a pair of points as being different locations geographically
    */
-  _computeTrips(days = 90, maxTDelta = 0.1, minTripDist = 0.5, minDistDelta = 0.00001) {
+  _computeTrips(days = 120, maxTDelta = 0.1, maxDistDelta = 2, minTripDist = 0.5, minDistDelta = 0.00001) {
     // Get data from the specified time period
     const dateCutoff = +new Date - days * 86400000;
 
@@ -91,7 +94,10 @@ class TripDataAnalyser {
 
     const maxTDeltaMs = maxTDelta * 3600000;
     rawData.forEach(curLoc => {
-      if (curLoc.getTime() - lastLoc.getTime() > maxTDeltaMs) {
+      if (
+        curLoc.getTime() - lastLoc.getTime() > maxTDeltaMs ||
+        Math.abs(turf.distance(curLoc.toArray(), lastLoc.toArray(), 'miles')) > maxDistDelta
+      ) {
         // New trip
         curTrip = new Trip;
         this._trips.push(curTrip);
