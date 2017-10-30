@@ -22,5 +22,18 @@ class App {
     this.vehicleStats = new VehicleStats({
       id : "vehicle-stats"
     });
+  
+    // Mapbox Config
+    mapboxgl.accessToken =
+      'pk.eyJ1IjoidXBlbCIsImEiOiJjajllZ29reTUyYTJoMndsc3ZtdGg2NXpsIn0.Y6sKlsUA9ZIm8rHfklQPaQ';
+    this.map = new mapboxgl.Map({
+      container : 'map',
+      style : 'mapbox://styles/mapbox/light-v9',
+      center: [-111.801, 41.746],
+      zoom: 10
+    });
+
+    this.map.on('load', () => {
+    });
   }
 };
