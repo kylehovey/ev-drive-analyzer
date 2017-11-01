@@ -9,6 +9,7 @@ class TripDataAnalyser {
    */
   constructor(opts) {
     /**
+     * Configuration options
      * @type {Object}
      */
     this._opts = Object.assign({
@@ -17,9 +18,16 @@ class TripDataAnalyser {
     }, opts);
 
     /**
+     * All trips
      * @type {Array}
      */
     this._trips = [];
+
+    /**
+     * Graph structure of trips
+     * @type {Graph}
+     */
+    this.tripGraph = new Graph;
   }
 
   /**
@@ -144,5 +152,12 @@ class TripDataAnalyser {
 
     // Filter out any trips that did not get enough data
     this._trips = this._trips.filter(trip => trip.getDistance() > minTripDist);
+  }
+
+  /**
+   * Compute a trip graph using the computed trips from user data
+   */
+  _computeGraph() {
+    // TODO
   }
 }
