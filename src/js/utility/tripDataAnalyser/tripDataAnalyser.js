@@ -27,7 +27,7 @@ class TripDataAnalyser {
      * Graph structure of trips
      * @type {Graph}
      */
-    this.tripGraph = new Graph;
+    this._tripGraph = new Graph;
   }
 
   /**
