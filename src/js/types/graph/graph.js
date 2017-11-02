@@ -36,6 +36,16 @@ class Graph {
   }
 
   /**
+   * Determine whether or not an edge exists
+   * @param {String|Number} from Label for from node
+   * @param {String|Number} to Label for to node
+   * @return {Boolean}
+   */
+  hasEdge(from, to) {
+    return `${from}${to}` in this._edges || `${to}${from}` in this._edges;
+  }
+
+  /**
    * Get the node specified by a label
    * @param {String|Number} label Label for node
    * @return {Node}
@@ -84,7 +94,13 @@ class Graph {
     // Add edge to graph
     [ from, to ]
       .map(this.getAdjacent.bind(this))
-      .forEach((list, i) => list.push(i === 0 ? to : from));
+      .forEach((list, i) => {
+        const entry = i === 0 ? to : from;
+
+        if (!list.includes(entry)) {
+          list.push(entry);
+        }
+      });
 
     // Add edge data to graph
     this._edges[`${from}${to}`] = new Edge(

@@ -188,8 +188,19 @@ class TripDataAnalyser {
     _
       .chunk(clusteredData.features, 2)
       .map(([start, stop]) => [start.properties.cluster, stop.properties.cluster])
-      .forEach(([startCluster, stopCluster]) => {
-        this._tripGraph.addEdge(startCluster, stopCluster);
+      .forEach(([startCluster, stopCluster], tripNo) => {
+        if (!this._tripGraph.hasEdge(startCluster, stopCluster)) {
+          // Trip does not exist yet, create it as an edge
+          this._tripGraph.addEdge(startCluster, stopCluster, {
+            trips : [ tripNo ]
+          });
+        } else {
+          // Trip exists, add trip number to array
+          this._tripGraph.getEdge(startCluster, stopCluster)
+            .getData()
+            .trips
+            .push(tripNo);
+        }
       });
   }
 
