@@ -129,7 +129,7 @@ class Graph {
 
   /**
    * Get all edges
-   * @return {[Edge, ...]}
+   * @return {Edge[]}
    */
   getEdges() {
     return Object.values(this._edges);
