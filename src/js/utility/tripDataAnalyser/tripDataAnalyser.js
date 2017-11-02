@@ -243,4 +243,12 @@ class TripDataAnalyser {
         .map(coords => turf.lineString(coords))
     );
   }
+
+  /**
+   * Get the bounds of the trip data
+   * @return {mapboxgl.LngLatBounds}
+   */
+  getBounds() {
+    return turf.bbox(this.getNodeCollection());
+  }
 }

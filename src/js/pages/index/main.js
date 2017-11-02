@@ -88,6 +88,9 @@ $(() => {
         paint: { }
       });
 
+      // Auto-zoom map
+      app.map.fitBounds(app.analyser.getBounds());
+
       // Reset loader view
       await upload.fadeOut().promise();
 
