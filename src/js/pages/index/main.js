@@ -61,14 +61,14 @@ $(() => {
         type : "line",
         source : {
           type : "geojson",
-          data : app.analyser.getTripsCollection()
+          data : app.analyser.getEdgeCollection()
         },
         layout : {
           "line-join" : "round",
           "line-cap" : "round"
         },
         paint : {
-          "line-color" : "rgba(183, 42, 111, 0.5)",
+          "line-color" : "rgba(183, 42, 111, 1)",
           "line-width" : 1
         }
       });
@@ -79,7 +79,7 @@ $(() => {
         type : "symbol",
         source : {
           type : "geojson",
-          data : app.analyser.getEndpointsCollection()
+          data : app.analyser.getNodeCollection()
         },
         layout: {
           "icon-image": "circle-15",

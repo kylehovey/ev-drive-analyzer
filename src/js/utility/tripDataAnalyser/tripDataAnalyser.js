@@ -216,4 +216,32 @@ class TripDataAnalyser {
 
     return this._tripGraph;
   }
+
+  /**
+   * Get trip nodes as a feature collection
+   * @return {FeatureCollection}
+   */
+  getNodeCollection() {
+    return turf.featureCollection(
+      this.getTripGraph()
+      .getNodes()
+      .map(node => node.getData())
+      .map(data => turf.point(data.coords))
+    );
+  }
+
+  /**
+   * Get trip edges as a feature collection
+   * @return {FeatureCollection}
+   */
+  getEdgeCollection() {
+    return turf.featureCollection(
+      this.getTripGraph()
+        .getEdges()
+        .map(edge => edge.getAdjacentNodes())
+        .map(nodes => nodes.map(node => node.getData().coords))
+        .map(x => {console.log(x); return x;})
+        .map(coords => turf.lineString(coords))
+    );
+  }
 }
