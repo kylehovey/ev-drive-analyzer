@@ -240,7 +240,6 @@ class TripDataAnalyser {
         .getEdges()
         .map(edge => edge.getAdjacentNodes())
         .map(nodes => nodes.map(node => node.getData().coords))
-        .map(x => {console.log(x); return x;})
         .map(coords => turf.lineString(coords))
     );
   }
