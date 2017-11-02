@@ -24,7 +24,7 @@ class Edge {
      * Data for this edge
      * @type {Object}
      */
-    this._data = {};
+    this._data = data
   }
 
   /**
