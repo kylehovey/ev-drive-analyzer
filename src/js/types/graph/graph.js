@@ -14,7 +14,7 @@ class Graph {
 
   /**
    * Add a node to the graph
-   * @param {String} label Label for node
+   * @param {String|Number} label Label for node
    * @param {Object} data Data to set for node
    */
   addNode(label, data = {}) {
@@ -27,15 +27,22 @@ class Graph {
   }
 
   /**
+   * Determine whether or not a node exists
+   * @param {String|Number} label Label for node
+   * @return {Boolean}
+   */
+  hasNode(label) {
+    return label in this._nodes;
+  }
+
+  /**
    * Get the node specified by a label
-   * @param {String} label
+   * @param {String|Number} label Label for node
    * @return {Node}
    */
   getNode(label) {
-    const node = this._nodes[label];
-    
-    if (node !== undefined) {
-      return node;
+    if (this.hasNode(label)) {
+      return this._nodes[label];
     } else {
       throw new Error(`Node "${label}" not found in graph.`);
     }
@@ -51,7 +58,7 @@ class Graph {
 
   /**
    * Get all labels for the graph
-   * @return {[String, ...]}
+   * @return {[String|Number, ...]}
    */
   getLabels() {
     return this.getNodes()
@@ -60,8 +67,8 @@ class Graph {
 
   /**
    * Get adjacent nodes to a given label
-   * @param {String} label Label of desired node
-   * @return {[Node, ...]}
+   * @param {String|Number} label Label for node
+   * @return {Node[]}
    */
   getAdjacent(label) {
     return this._adjacencies.get(this.getNode(label));

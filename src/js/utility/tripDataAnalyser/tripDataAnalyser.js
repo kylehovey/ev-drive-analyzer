@@ -4,6 +4,7 @@
 class TripDataAnalyser {
   /**
    * Instantiate the analyser
+   * @param {Object} opts Options object
    * @param {Vehicle} opts.vehicle Vehicle to use for analysis
    * @param {Object} opts.takeoutData Google takeout data
    */
@@ -25,9 +26,9 @@ class TripDataAnalyser {
 
     /**
      * Graph structure of trips
-     * @type {Graph}
+     * @type {?Graph}
      */
-    this._tripGraph = new Graph;
+    this._tripGraph = null;
   }
 
   /**
@@ -45,6 +46,7 @@ class TripDataAnalyser {
   setData(data) {
     this._opts.takeoutData = data.locations.reverse();
     this._computeTrips();
+    this._computeGraph();
   }
 
   /**
@@ -103,7 +105,13 @@ class TripDataAnalyser {
    *  @param {Number} minDistDelta Minimum decimal degree difference to warrant
    *    considering a pair of points as being different locations geographically
    */
-  _computeTrips(days = 120, maxTDelta = 0.1, maxDistDelta = 5, minTripDist = 0.5, minDistDelta = 0.000001) {
+  _computeTrips(
+    days = 120,
+    maxTDelta = 0.1,
+    maxDistDelta = 5,
+    minTripDist = 0.5,
+    minDistDelta = 0.000001
+  ) {
     // Get data from the specified time period
     const dateCutoff = +new Date - days * 86400000;
 
@@ -158,6 +166,43 @@ class TripDataAnalyser {
    * Compute a trip graph using the computed trips from user data
    */
   _computeGraph() {
-    // TODO
+    // Compute K-Means of the endpoints
+    const clusteredData = turf.clustersKmeans(
+      this.getEndpointsCollection()
+    );
+
+    // Instantiate local graph
+    this._tripGraph = new Graph;
+
+    // Build nodes for centroids
+    const centroids = clusteredData.features
+      .forEach(feature => {
+        if (!this._tripGraph.hasNode(feature.properties.cluster)) {
+          this._tripGraph.addNode(feature.properties.cluster, {
+            coords : feature.properties.centroid
+          });
+        }
+      });
+
+    // Add edges (each adjacent pair came from a trip)
+    _
+      .chunk(clusteredData.features, 2)
+      .map(([start, stop]) => [start.properties.cluster, stop.properties.cluster])
+      .forEach(([startCluster, stopCluster]) => {
+        this._tripGraph.addEdge(startCluster, stopCluster);
+      });
+  }
+
+  /**
+   * Get the computed graph for the trip
+   * @return {Graph}
+   */
+  getTripGraph() {
+    // Make sure it exists
+    if (this._tripGraph === null) {
+      this._computeGraph();
+    }
+
+    return this._tripGraph;
   }
 }

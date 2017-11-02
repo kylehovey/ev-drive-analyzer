@@ -4,7 +4,7 @@
 class Node {
   /**
    * Construct a graph node
-   * @param {String} label Label for node
+   * @param {String|Number} label Label for node
    * @param {Object} data Data to set for node
    */
   constructor(label, data = {}) {
@@ -23,7 +23,7 @@ class Node {
 
   /**
    * Get the label for this node
-   * @return {String}
+   * @return {String|Number}
    */
   getLabel() {
     return this._label;
