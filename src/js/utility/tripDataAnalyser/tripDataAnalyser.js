@@ -106,7 +106,7 @@ class TripDataAnalyser {
    *    considering a pair of points as being different locations geographically
    */
   _computeTrips(
-    days = 120,
+    days = 180,
     maxTDelta = 0.1,
     maxDistDelta = 5,
     minTripDist = 0.5,
@@ -249,6 +249,6 @@ class TripDataAnalyser {
    * @return {mapboxgl.LngLatBounds}
    */
   getBounds() {
-    return turf.bbox(this.getNodeCollection());
+    return turf.bbox(this.getEdgeCollection());
   }
 }
