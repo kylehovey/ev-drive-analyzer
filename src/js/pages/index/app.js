@@ -40,32 +40,18 @@ class App {
     // Config
     this.map.addControl(new mapboxgl.NavigationControl());
 
-    // Google chart loading
-    google.charts.load("current", { "packages" : [ "corechart" ] }).then(() => {
-      const data = google.visualization.arrayToDataTable([
-        ["", "", { role: "style" }, { role: 'annotation' }],
-        ["Trips Possible With EV", 600, "#0091ba", 600],
-        ["Trips That Require Fill-Up", 100, "salmon", 100]
-      ]);
-
-      const options = {
-        title: "",
-        hAxis: {
-          minValue: 0,
-          textPosition : "none",
-          gridlines : { color : "transparent" }
-        },
-        vAxis : {
-          textPosition : "none",
-          gridlines : { color : "transparent" }
-        },
-        legend: { position: "none" },
-        backgroundColor : { fill:"transparent" }
-      };
-
-      const chart = new google.visualization.BarChart($("#chart")[0]);
-
-      chart.draw(data, options);
+    /**
+     * Results chart
+     * @type {google.visualization.BarChart}
+     */
+    this.chart = new HBarChart({
+      container : "chart",
+      columnInfo : ["", "", { role: "annotation" }],
+      colorScheme : [ "#09c", "salmon" ],
+      data : [
+        ["Trips Possible With EV", 600, 600],
+        ["Trips That Require Fill-Up", 100, 100]
+      ]
     });
   }
 };
